@@ -1,0 +1,168 @@
+/* ////////////////////////////////// Index Page \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background-color: brown;
+    background-size: 100vw 100vh;
+}
+
+.svgTwo{
+    width: 2em;
+	height: 2em;
+	fill: black;
+	padding: 1em;
+	border-radius: 50%;
+	background-color: yellowgreen;
+}
+
+h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: black;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: black;
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.navOne{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    margin-top: 1rem;
+
+}
+
+.navA {
+    text-decoration: none;
+    color: green;
+    background-color: black;
+    font-size: 2rem;
+    font-weight: 700;
+    padding: 12px 24px;
+    border-style: solid;
+    border-color: purple;
+    border-width: 2px;
+    border-radius: 12px;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5em;
+}
+
+.controlBtn {
+    margin: 1em;
+}
+
+.mainDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* ///////////////////////////////// Music Page \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+
+.movlist {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    column-gap: 4em;
+    row-gap: 0.25em;
+    margin-top: 1em;
+    margin-left: 6em;
+}
+
+.movListA {
+    text-decoration: none;
+    color: black;
+    padding: 12px;
+}
+
+.mov {
+    font-size: 1.25em;
+    justify-self: center;
+    align-self: center;
+}
+
+/* ///////////////////////////////// TVShows Page \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+.tvList {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    column-gap: 4em;
+    row-gap: 0.25em;
+    margin-top: 1em;
+    margin-left: 6em;
+}
+
+.tvListA {
+    text-decoration: none;
+    color: black;
+    padding: 12px;
+}
+
+.tv {
+    font-size: 1.25em;
+    justify-self: center;
+    align-self: center;
+}
+
+/* ///////////////////////////////// Admin Page \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\ */
+
+.adminDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1em;
+}
+
+
+
+
+.bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+}
+
+.baz2 {
+    width: 210px;
+}
+img {
+    width: 200px;
+    height: 300px;
+    border-radius: 0.5rem;
+}
+.link-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+
+    padding: 0.15rem;
+    background-color: rgb(33, 156, 8);
+    background-image: var(--accent-gradient);
+    background-size: 200%;
+    border-radius: 0.5rem;
+    background-position: 100%;
+    width: 105%;
+    margin: 1em;
+}

@@ -1,0 +1,30 @@
+{{ define "mtv_tvshows" }}
+
+<div class="tvList">
+    <span class="tvListA" hx-trigger="click" hx-get="/tvaction" hx-target="main" hx-swap="innerHTML"><p class="tv">Action</p></span>
+    <span class="tvListA" hx-trigger="click" hx-get="/tvcomedy" hx-target="main" hx-swap="innerHTML"><p class="tv">Comedy</p></span>
+    <a class="tvListA" href="/TVShows/tvfantasy">
+        <p class="tv">Fantasy</p>
+    </a>
+    <a class="tvListA" href="/TVShows/tvstartrek">
+        <p class="tv">Star Trek</p>
+    </a>
+    <a class="tvListA" href="/TVShows/tvstarwars">
+        <p class="tv">Star Wars</p>
+    </a>
+    <a class="tvListA" href="/TVShows/tvscifi">
+        <p class="tv">SciFi</p>
+    </a>
+    <a class="tvListA" href="/TVShows/tvscience">
+        <p class="tv">Science</p>
+    </a>
+    <a class="tvListA" href="/TVShows/tvmcu">
+        <p class="tv">MCU</p>
+    </a>
+    <a class="tvListA" href="/TVShows/tvwesterns">
+        <p class="tv">Western</p>
+    </a>
+</div>
+
+
+{{ end }}

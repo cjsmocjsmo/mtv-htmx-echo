@@ -1,0 +1,59 @@
+{{define "mtv_index" }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content="Alpha Tree Service.">
+    <title>MTV</title>
+    <link rel="stylesheet" href="/assets/main.css">
+    <script src="/assets/htmx.min.js"></script>
+</head>
+
+<body>
+    <nav class="navOne">
+        <a href="/"><button class="navA">Home</button></a>
+        <button class="navA" hx-trigger="click" hx-get="/movies" hx-target="main" hx-swap="innerHTML">Movies</button>
+        <button class="navA" hx-trigger="click" hx-get="/tvshows" hx-target="main" hx-swap="innerHTML">TVShows</button>
+        <button class="navA" hx-trigger="click" hx-get="/admin" hx-target="main" hx-swap="innerHTML">Admin</button>
+    </nav>
+    <h1>MTV</h1>
+    <div class="controls">
+        <div id="previousBtn" class="controlBtn">
+            <svg class="svgTwo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path
+                    d="M267.5 440.6c9.5 7.9 22.8 9.7 34.1 4.4s18.4-16.6 18.4-29V96c0-12.4-7.2-23.7-18.4-29s-24.5-3.6-34.1 4.4l-192 160L64 241V96c0-17.7-14.3-32-32-32S0 78.3 0 96V416c0 17.7 14.3 32 32 32s32-14.3 32-32V271l11.5 9.6 192 160z" />
+            </svg>
+        </div>
+
+        <div id="stopBtn" class="controlBtn">
+            <svg class="svgTwo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path
+                    d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z" />
+            </svg>
+        </div>
+
+        <div id="nextBtn" class="controlBtn">
+            <svg class="svgTwo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+                <path
+                    d="M52.5 440.6c-9.5 7.9-22.8 9.7-34.1 4.4S0 428.4 0 416V96C0 83.6 7.2 72.3 18.4 67s24.5-3.6 34.1 4.4l192 160L256 241V96c0-17.7 14.3-32 32-32s32 14.3 32 32V416c0 17.7-14.3 32-32 32s-32-14.3-32-32V271l-11.5 9.6-192 160z" />
+            </svg>
+        </div>
+    </div>
+    <main>
+        <h2>Recently Added</h2>
+        <div class="mainDiv">
+            <p>Movie 1</p>
+            <p>Movie 2</p>
+            <p>Movie 3</p>
+            <p>Movie 4</p>
+            <p>Movie 5</p>
+        </div>
+    </main>
+
+</body>
+
+</html>
+
+{{end}}
