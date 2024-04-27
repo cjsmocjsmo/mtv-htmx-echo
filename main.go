@@ -180,6 +180,13 @@ func main() {
 		e.GET("/tvshows", mtv_tvshows)
 		e.GET("/tvaction", tv_action)
 		e.GET("/tvcomedy", tv_comedy)
+		e.GET("/tvfantasy", tv_fantasy)
+		e.GET("/tvstartrek", tv_startrek)
+		e.GET("/tvstarwars", tv_starwars)
+		e.GET("/tvscifi", tv_scifi)
+		e.GET("/tvscience", tv_science)
+		e.GET("/tvmcu", tv_mcu)
+		e.GET("/tvwestern", tv_western)
 		e.GET("/admin", mtv_admin)
 		e.Static("/assets", "assets")
 		e.Logger.Fatal(e.Start(":8080"))
@@ -214,7 +221,31 @@ func tv_comedy(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_comedy", "WORKED")
 }
 
-// func ats_videos(c echo.Context) error {
-// 	return c.Render(http.StatusOK, "ats_videos", "WORKED")
-// }
+func tv_fantasy(c echo.Context) error {
+	return c.Render(http.StatusOK, "tv_fantasy", "WORKED")
+}
+
+func tv_startrek(c echo.Context) error {
+	return c.Render(http.StatusOK, "tv_startrek", "WORKED")
+}
+
+func tv_starwars(c echo.Context) error {
+	return c.Render(http.StatusOK, "tv_starwars", "WORKED")
+}
+
+func tv_scifi(c echo.Context) error {
+	return c.Render(http.StatusOK, "tv_scifi", "WORKED")
+}
+
+func tv_science(c echo.Context) error {
+	return c.Render(http.StatusOK, "tv_science", "WORKED")
+}
+
+func tv_mcu(c echo.Context) error {
+	return c.Render(http.StatusOK, "tv_mcu", "WORKED")
+}
+
+func tv_western(c echo.Context) error {
+	return c.Render(http.StatusOK, "tv_western", "WORKED")
+}
 
