@@ -1,15 +1,15 @@
 {{ define "mov_action" }}
 
     <h1>MovAction</h1>
-    {{ range . }}
-        <div class="bar">
+    <div class="bar">
+        {{ range . }}
             <div class="baz2">
                 <div class="link-card">
                     <img src="{{ .httpthumbpath }}" />
                 </div>
             </div>
-        </div>
-    {{ end }}
+        {{ end }}
+    </div>
 
 {{ end }}
 
