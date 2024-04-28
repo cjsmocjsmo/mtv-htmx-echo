@@ -4,7 +4,7 @@
     {{ range . }}
     <div class="baz2">
         <div class="link-card">
-            <img src="{{ .httpthumbpath }}" />
+            <img src="{{ .httpthumbpath }}" data-movid="{{ .movid }}" onclick="PlayMovie()"/>
         </div>
     </div>
     {{ end }}

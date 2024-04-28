@@ -123,9 +123,16 @@ func main() {
 	e.GET("/tvmcu", tv_mcu)
 	e.GET("/tvwestern", tv_western)
 	e.GET("/admin", mtv_admin)
+	e.GET("/playmovie/:movid", playmovie)
 	e.Static("/assets", "assets")
 	e.Logger.Fatal(e.Start(":8080"))
 
+}
+
+func playmovie(c echo.Context) error {
+	movid := c.Param("movid")
+	fmt.Printf("movid: %s\n", movid)
+	return c.Render(http.StatusOK, "mov_play", movid)
 }
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
