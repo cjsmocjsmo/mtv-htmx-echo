@@ -208,14 +208,26 @@ func mov_arnold(c echo.Context) error {
 	}
 	defer rows.Close()
 
-	var movies []MovieStruct
+	var movies []map[string]string
 	for rows.Next() {
 		var movie MovieStruct
 		if err := rows.Scan(&movie.name, &movie.year, &movie.posteraddr, &movie.size, &movie.path, &movie.idx, &movie.movid, &movie.catagory, &movie.httpthumbpath); err != nil {
 			log.Printf("failed to scan row: %v", err)
 			return fmt.Errorf("failed to scan row: %v", err)
 		}
-		movies = append(movies, movie)
+		var movinfo = map[string]string{
+			"name":          movie.name,
+			"year":          movie.year,
+			"posteraddr":    movie.posteraddr,
+			"size":          movie.size,
+			"path":          movie.path,
+			"idx":           movie.idx,
+			"movid":         movie.movid,
+			"catagory":      movie.catagory,
+			"httpthumbpath": movie.httpthumbpath,
+		}
+		log.Printf("movie: %v", movinfo)
+		movies = append(movies, movinfo)
 	}
 
 	if err := rows.Err(); err != nil {
