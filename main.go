@@ -155,7 +155,7 @@ func mov_action(c echo.Context) error {
 	}
 	defer db.Close()
 
-	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE category = ?", "action")
+	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE catagory = ?", "action")
 	if err != nil {
 		log.Printf("failed to execute query: %v", err)
 		return fmt.Errorf("failed to execute query: %v", err)
@@ -188,7 +188,7 @@ func mov_arnold(c echo.Context) error {
 	}
 	defer db.Close()
 
-	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE category = ?", "arnold")
+	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE catagory = ?", "arnold")
 	if err != nil {
 		return fmt.Errorf("failed to execute query: %v", err)
 	}
