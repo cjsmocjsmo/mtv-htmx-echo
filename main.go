@@ -70,7 +70,7 @@ func checkDBExists() {
 func init() {
 
 	godotenv.Load("mtvhtmxecho.env")
-	// checkDBExists()
+	checkDBExists()
 
 }
 
