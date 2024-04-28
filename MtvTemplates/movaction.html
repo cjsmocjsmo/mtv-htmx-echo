@@ -1,7 +1,7 @@
 {{ define "mov_action" }}
 
 <h1>MovAction</h1>
-
-<p>{{.}}</p>
+{{ range . }}
+    <p>{{ .httpthumbpath }}</p>
 
 {{ end }}
