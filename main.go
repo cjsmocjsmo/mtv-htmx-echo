@@ -30,15 +30,15 @@ type Template struct {
 }
 
 type MovieStruct struct {
-	Name          string
-	Year          string
-	PosterAddr    string
-	Size          string
-	Path          string
-	Idx           string
-	MovId         string
-	Catagory      string
-	HttpThumbPath string
+	name          string
+	year          string
+	posteraddr    string
+	size          string
+	path          string
+	idx           string
+	movid         string
+	catagory      string
+	httpthumbpath string
 }
 
 type TvShowStruct struct {
@@ -155,7 +155,7 @@ func mov_action(c echo.Context) error {
 	}
 	defer db.Close()
 
-	rows, err := db.Query("SELECT Name, Year, PosterAddr, Size, Path, Idx FROM movies WHERE Category = ?", "action")
+	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE category = ?", "action")
 	if err != nil {
 		log.Printf("failed to execute query: %v", err)
 		return fmt.Errorf("failed to execute query: %v", err)
@@ -165,7 +165,7 @@ func mov_action(c echo.Context) error {
 	var movies []MovieStruct
 	for rows.Next() {
 		var movie MovieStruct
-		if err := rows.Scan(&movie.Name, &movie.Year, &movie.PosterAddr, &movie.Size, &movie.Path, &movie.Idx); err != nil {
+		if err := rows.Scan(&movie.name, &movie.year, &movie.posteraddr, &movie.size, &movie.path, &movie.idx, &movie.movid, &movie.catagory, &movie.httpthumbpath); err != nil {
 			log.Printf("failed to scan row: %v", err)
 			return fmt.Errorf("failed to scan row: %v", err)
 		}
@@ -188,7 +188,7 @@ func mov_arnold(c echo.Context) error {
 	}
 	defer db.Close()
 
-	rows, err := db.Query("SELECT Name, Year, PosterAddr, Size, Path, Idx FROM movies WHERE Category = ?", "arnold")
+	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE category = ?", "arnold")
 	if err != nil {
 		return fmt.Errorf("failed to execute query: %v", err)
 	}
@@ -197,7 +197,7 @@ func mov_arnold(c echo.Context) error {
 	var movies []MovieStruct
 	for rows.Next() {
 		var movie MovieStruct
-		if err := rows.Scan(&movie.Name, &movie.Year, &movie.PosterAddr, &movie.Size, &movie.Path, &movie.Idx); err != nil {
+		if err := rows.Scan(&movie.name, &movie.year, &movie.posteraddr, &movie.size, &movie.path, &movie.idx, &movie.movid, &movie.catagory, &movie.httpthumbpath); err != nil {
 			return fmt.Errorf("failed to scan row: %v", err)
 		}
 		movies = append(movies, movie)
