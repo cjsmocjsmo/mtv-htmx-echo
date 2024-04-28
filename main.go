@@ -1,28 +1,17 @@
 package main
 
 import (
-	// "golang.org/x/crypto/acme"
 	"database/sql"
-	// "flag"
 	"fmt"
-	"html/template"
-	"io"
-	"log"
-
-	"net/http"
-
-	"os"
-	// "regexp"
-	// "strconv"
-	// "time"
-	// "unicode"
-	// "strings"
-
-	// "github.com/google/uuid"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	_ "github.com/mattn/go-sqlite3"
+	"html/template"
+	"io"
+	"log"
+	"net/http"
+	"os"
 )
 
 type Template struct {
@@ -68,10 +57,8 @@ func checkDBExists() {
 }
 
 func init() {
-
 	godotenv.Load("mtvhtmxecho.env")
 	checkDBExists()
-
 }
 
 func main() {
@@ -125,7 +112,6 @@ func main() {
 	e.GET("/movtremors", mov_tremors)
 	e.GET("/movtherock", mov_therock)
 	e.GET("/movxmen", mov_xmen)
-
 	e.GET("/tvshows", mtv_tvshows)
 	e.GET("/tvaction", tv_action)
 	e.GET("/tvcomedy", tv_comedy)
