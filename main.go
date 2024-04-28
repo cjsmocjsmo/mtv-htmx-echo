@@ -184,12 +184,14 @@ func mov_arnold(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
+		log.Printf("failed to open database: %v", err)
 		return fmt.Errorf("failed to open database: %v", err)
 	}
 	defer db.Close()
 
 	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE catagory = ?", "Arnold")
 	if err != nil {
+		log.Printf("failed to execute query: %v", err)
 		return fmt.Errorf("failed to execute query: %v", err)
 	}
 	defer rows.Close()
@@ -198,15 +200,18 @@ func mov_arnold(c echo.Context) error {
 	for rows.Next() {
 		var movie MovieStruct
 		if err := rows.Scan(&movie.name, &movie.year, &movie.posteraddr, &movie.size, &movie.path, &movie.idx, &movie.movid, &movie.catagory, &movie.httpthumbpath); err != nil {
+			log.Printf("failed to scan row: %v", err)
 			return fmt.Errorf("failed to scan row: %v", err)
 		}
 		movies = append(movies, movie)
 	}
 
 	if err := rows.Err(); err != nil {
+		log.Printf("rows iteration error: %v", err)
 		return fmt.Errorf("rows iteration error: %v", err)
 	}
-	return c.Render(http.StatusOK, "mov_arnold", movies)
+
+	return c.Render(http.StatusOK, "mov_action", movies)
 }
 
 func mov_brucelee(c echo.Context) error {
