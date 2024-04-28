@@ -8,9 +8,9 @@ import (
 	"html/template"
 	"io"
 	// "log"
-	
+
 	"net/http"
-	
+
 	"os"
 	// "regexp"
 	// "strconv"
@@ -30,26 +30,26 @@ type Template struct {
 }
 
 type MovieStruct struct {
-	Name 			string
-	Year 			string
-	PosterAddr 		string
-	Size 			string
-	Path 			string
-	Idx 			string
-	MovId 			string
-	Catagory 		string
-	HttpThumbPath 	string
+	Name          string
+	Year          string
+	PosterAddr    string
+	Size          string
+	Path          string
+	Idx           string
+	MovId         string
+	Catagory      string
+	HttpThumbPath string
 }
 
 type TvShowStruct struct {
-	TvId 			string
-	Size			string
-	Catagory		string
-	Name 			string
-	Season 			string
-	Episode 		string
-	Path 			string
-	Idx 			string
+	TvId     string
+	Size     string
+	Catagory string
+	Name     string
+	Season   string
+	Episode  string
+	Path     string
+	Idx      string
 }
 
 func checkDBExists() {
@@ -76,71 +76,70 @@ func init() {
 
 func main() {
 
-	
-		e := echo.New()
-		e.Use(middleware.CORS())
-		e.Use(middleware.Gzip())
-		// e.Use(middleware.Recover())
-		t := &Template{
-			templates: template.Must(template.ParseGlob("MtvTemplates/*")),
-		}
-		e.Renderer = t
+	e := echo.New()
+	e.Use(middleware.CORS())
+	e.Use(middleware.Gzip())
+	// e.Use(middleware.Recover())
+	t := &Template{
+		templates: template.Must(template.ParseGlob("MtvTemplates/*")),
+	}
+	e.Renderer = t
 
-		e.GET("/", mtv_index)
-		e.GET("/movies", mtv_movies)
-		e.GET("/movaction", mov_action)
-		e.GET("/movarnold", mov_arnold)
-		e.GET("/movbrucelee", mov_brucelee)
-		e.GET("/movbrucewillis", mov_brucewillis)
-		e.GET("/movbuzz", mov_buzz)
-		e.GET("/movcartoons", mov_cartoons)
-		e.GET("/movcharliebrown", mov_charliebrown)
-		e.GET("/movchucknorris", mov_chucknorris)
-		e.GET("/movcomedy", mov_comedy)
-		e.GET("/movdocumentary", mov_documentary)
-		e.GET("/movdrama", mov_drama)
-		e.GET("/movfantasy", mov_fantasy)
-		e.GET("/movgodzilla", mov_godzilla)
-		e.GET("/movharrypotter", mov_harrypotter)
-		e.GET("/movindianajones", mov_indianajones)
-		e.GET("/movjamesbond", mov_jamesbond)
-		e.GET("/movjohnwayne", mov_johnwayne)
-		e.GET("/movjohnwick", mov_johnwick)
-		e.GET("/movjurrassicpark", mov_jurrassicpark)
-		e.GET("/movkingsman", mov_kingsman)
-		e.GET("/movmeninblack", mov_meninblack)
-		e.GET("/movminions", mov_minions)
-		e.GET("/movmisc", mov_misc)
-		e.GET("/movnicolascage", mov_nicolascage)
-		e.GET("/movoldies", mov_oldies)
-		e.GET("/movpirates", mov_pirates)
-		e.GET("/movriddick", mov_riddick)
-		e.GET("/movscifi", mov_scifi)
-		e.GET("/movstalone", mov_stalone)
-		e.GET("/movstartrek", mov_startrek)
-		e.GET("/movstarwars", mov_starwars)
-		e.GET("/movsuperheros", mov_superheros)
-		e.GET("/movtinkerbell", mov_tinkerbell)
-		e.GET("/movtomcruize", mov_tomcruize)
-		e.GET("/movtransformers", mov_transformers)
-		e.GET("/movtremors", mov_tremors)
-		e.GET("/movtherock", mov_therock)
-		e.GET("/movxmen", mov_xmen)
+	e.GET("/", mtv_index)
+	e.GET("/movies", mtv_movies)
+	e.GET("/movaction", mov_action)
+	e.GET("/movarnold", mov_arnold)
+	e.GET("/movbrucelee", mov_brucelee)
+	e.GET("/movbrucewillis", mov_brucewillis)
+	e.GET("/movbuzz", mov_buzz)
+	e.GET("/movcartoons", mov_cartoons)
+	e.GET("/movcharliebrown", mov_charliebrown)
+	e.GET("/movchucknorris", mov_chucknorris)
+	e.GET("/movcomedy", mov_comedy)
+	e.GET("/movdocumentary", mov_documentary)
+	e.GET("/movdrama", mov_drama)
+	e.GET("/movfantasy", mov_fantasy)
+	e.GET("/movgodzilla", mov_godzilla)
+	e.GET("/movharrypotter", mov_harrypotter)
+	e.GET("/movindianajones", mov_indianajones)
+	e.GET("/movjamesbond", mov_jamesbond)
+	e.GET("/movjohnwayne", mov_johnwayne)
+	e.GET("/movjohnwick", mov_johnwick)
+	e.GET("/movjurrassicpark", mov_jurrassicpark)
+	e.GET("/movkingsman", mov_kingsman)
+	e.GET("/movmeninblack", mov_meninblack)
+	e.GET("/movminions", mov_minions)
+	e.GET("/movmisc", mov_misc)
+	e.GET("/movnicolascage", mov_nicolascage)
+	e.GET("/movoldies", mov_oldies)
+	e.GET("/movpirates", mov_pirates)
+	e.GET("/movriddick", mov_riddick)
+	e.GET("/movscifi", mov_scifi)
+	e.GET("/movstalone", mov_stalone)
+	e.GET("/movstartrek", mov_startrek)
+	e.GET("/movstarwars", mov_starwars)
+	e.GET("/movsuperheros", mov_superheros)
+	e.GET("/movtinkerbell", mov_tinkerbell)
+	e.GET("/movtomcruize", mov_tomcruize)
+	e.GET("/movtransformers", mov_transformers)
+	e.GET("/movtremors", mov_tremors)
+	e.GET("/movtherock", mov_therock)
+	e.GET("/movxmen", mov_xmen)
 
-		e.GET("/tvshows", mtv_tvshows)
-		e.GET("/tvaction", tv_action)
-		e.GET("/tvcomedy", tv_comedy)
-		e.GET("/tvfantasy", tv_fantasy)
-		e.GET("/tvstartrek", tv_startrek)
-		e.GET("/tvstarwars", tv_starwars)
-		e.GET("/tvscifi", tv_scifi)
-		e.GET("/tvscience", tv_science)
-		e.GET("/tvmcu", tv_mcu)
-		e.GET("/tvwestern", tv_western)
-		e.GET("/admin", mtv_admin)
-		e.Static("/assets", "assets")
-		e.Logger.Fatal(e.Start(":8080"))
-	
+	e.GET("/tvshows", mtv_tvshows)
+	e.GET("/tvaction", tv_action)
+	e.GET("/tvcomedy", tv_comedy)
+	e.GET("/tvfantasy", tv_fantasy)
+	e.GET("/tvstartrek", tv_startrek)
+	e.GET("/tvstarwars", tv_starwars)
+	e.GET("/tvscifi", tv_scifi)
+	e.GET("/tvscience", tv_science)
+	e.GET("/tvmcu", tv_mcu)
+	e.GET("/tvwestern", tv_western)
+	e.GET("/admin", mtv_admin)
+	e.Static("/assets", "assets")
+	e.Logger.Fatal(e.Start(":8080"))
+
 }
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
@@ -148,40 +147,62 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 }
 
 func mov_action(c echo.Context) error {
-	
-	
-	
-		db, err := sql.Open("sqlite3", "/usr/share/mtvdb/mtv.db")
-		if err != nil {
-			return fmt.Errorf("failed to open database: %v", err)
-		}
-		defer db.Close()
-	
-		rows, err := db.Query("SELECT Name, Year, PosterAddr, Size, Path, Idx FROM movies WHERE Category = ?", "action")
-		if err != nil {
-			return fmt.Errorf("failed to execute query: %v", err)
-		}
-		defer rows.Close()
-	
-		var movies []MovieStruct
-		for rows.Next() {
-			var movie MovieStruct
-			if err := rows.Scan(&movie.Name, &movie.Year, &movie.PosterAddr, &movie.Size, &movie.Path, &movie.Idx); err != nil {
-				return fmt.Errorf("failed to scan row: %v", err)
-			}
-			movies = append(movies, movie)
-		}
+	dbpath := os.Getenv("MTV_DB_PATH")
+	db, err := sql.Open("sqlite3", dbpath)
+	if err != nil {
+		return fmt.Errorf("failed to open database: %v", err)
+	}
+	defer db.Close()
 
-		if err := rows.Err(); err != nil {
-			return fmt.Errorf("rows iteration error: %v", err)
+	rows, err := db.Query("SELECT Name, Year, PosterAddr, Size, Path, Idx FROM movies WHERE Category = ?", "action")
+	if err != nil {
+		return fmt.Errorf("failed to execute query: %v", err)
+	}
+	defer rows.Close()
+
+	var movies []MovieStruct
+	for rows.Next() {
+		var movie MovieStruct
+		if err := rows.Scan(&movie.Name, &movie.Year, &movie.PosterAddr, &movie.Size, &movie.Path, &movie.Idx); err != nil {
+			return fmt.Errorf("failed to scan row: %v", err)
 		}
-	
+		movies = append(movies, movie)
+	}
+
+	if err := rows.Err(); err != nil {
+		return fmt.Errorf("rows iteration error: %v", err)
+	}
 
 	return c.Render(http.StatusOK, "mov_action", movies)
 }
 
 func mov_arnold(c echo.Context) error {
-	return c.Render(http.StatusOK, "mov_arnold", "WORKED")
+	dbpath := os.Getenv("MTV_DB_PATH")
+	db, err := sql.Open("sqlite3", dbpath)
+	if err != nil {
+		return fmt.Errorf("failed to open database: %v", err)
+	}
+	defer db.Close()
+
+	rows, err := db.Query("SELECT Name, Year, PosterAddr, Size, Path, Idx FROM movies WHERE Category = ?", "arnold")
+	if err != nil {
+		return fmt.Errorf("failed to execute query: %v", err)
+	}
+	defer rows.Close()
+
+	var movies []MovieStruct
+	for rows.Next() {
+		var movie MovieStruct
+		if err := rows.Scan(&movie.Name, &movie.Year, &movie.PosterAddr, &movie.Size, &movie.Path, &movie.Idx); err != nil {
+			return fmt.Errorf("failed to scan row: %v", err)
+		}
+		movies = append(movies, movie)
+	}
+
+	if err := rows.Err(); err != nil {
+		return fmt.Errorf("rows iteration error: %v", err)
+	}
+	return c.Render(http.StatusOK, "mov_arnold", movies)
 }
 
 func mov_brucelee(c echo.Context) error {
@@ -328,7 +349,6 @@ func mov_xmen(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_xmen", "WORKED")
 }
 
-
 func mtv_index(c echo.Context) error {
 	return c.Render(http.StatusOK, "mtv_index", "WORKED")
 }
@@ -380,4 +400,3 @@ func tv_mcu(c echo.Context) error {
 func tv_western(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_western", "WORKED")
 }
-
