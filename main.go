@@ -239,7 +239,49 @@ func mov_arnold(c echo.Context) error {
 }
 
 func mov_brucelee(c echo.Context) error {
-	return c.Render(http.StatusOK, "mov_brucelee", "WORKED")
+	dbpath := os.Getenv("MTV_DB_PATH")
+	db, err := sql.Open("sqlite3", dbpath)
+	if err != nil {
+		log.Printf("failed to open database: %v", err)
+		return fmt.Errorf("failed to open database: %v", err)
+	}
+	defer db.Close()
+
+	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE catagory = ?", "BruceLee")
+	if err != nil {
+		log.Printf("failed to execute query: %v", err)
+		return fmt.Errorf("failed to execute query: %v", err)
+	}
+	defer rows.Close()
+
+	var movies []map[string]string
+	for rows.Next() {
+		var movie MovieStruct
+		if err := rows.Scan(&movie.name, &movie.year, &movie.posteraddr, &movie.size, &movie.path, &movie.idx, &movie.movid, &movie.catagory, &movie.httpthumbpath); err != nil {
+			log.Printf("failed to scan row: %v", err)
+			return fmt.Errorf("failed to scan row: %v", err)
+		}
+		var movinfo = map[string]string{
+			"name":          movie.name,
+			"year":          movie.year,
+			"posteraddr":    movie.posteraddr,
+			"size":          movie.size,
+			"path":          movie.path,
+			"idx":           movie.idx,
+			"movid":         movie.movid,
+			"catagory":      movie.catagory,
+			"httpthumbpath": movie.httpthumbpath,
+		}
+		log.Printf("movie: %v", movinfo)
+		movies = append(movies, movinfo)
+	}
+
+	if err := rows.Err(); err != nil {
+		log.Printf("rows iteration error: %v", err)
+		return fmt.Errorf("rows iteration error: %v", err)
+	}
+
+	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
 func mov_brucewillis(c echo.Context) error {
