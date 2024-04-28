@@ -2,7 +2,7 @@ package main
 
 import (
 	// "golang.org/x/crypto/acme"
-	// "database/sql"
+	"database/sql"
 	// "flag"
 	"fmt"
 	"html/template"
@@ -22,7 +22,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	// _ "github.com/mattn/go-sqlite3"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type Template struct {
@@ -72,21 +72,6 @@ func init() {
 	godotenv.Load("mtvhtmxecho.env")
 	// checkDBExists()
 
-	
-
-	
-
-	// filePath := os.Getenv("ATS_DB_PATH")
-	// _, err3 := os.OpenFile(filePath, os.O_CREATE|os.O_EXCL, 0755)
-	// if err3 != nil {
-	// 	if os.IsExist(err3) {
-	// 		fmt.Println("file exists")
-	// 	} else {
-	// 		fmt.Println(err3)
-	// 		fmt.Print("unable to create db file")
-	// 	}
-
-	// }
 }
 
 func main() {
@@ -107,6 +92,40 @@ func main() {
 		e.GET("/movarnold", mov_arnold)
 		e.GET("/movbrucelee", mov_brucelee)
 		e.GET("/movbrucewillis", mov_brucewillis)
+		e.GET("/movbuzz", mov_buzz)
+		e.GET("/movcartoons", mov_cartoons)
+		e.GET("/movcharliebrown", mov_charliebrown)
+		e.GET("/movchucknorris", mov_chucknorris)
+		e.GET("/movcomedy", mov_comedy)
+		e.GET("/movdocumentary", mov_documentary)
+		e.GET("/movdrama", mov_drama)
+		e.GET("/movfantasy", mov_fantasy)
+		e.GET("/movgodzilla", mov_godzilla)
+		e.GET("/movharrypotter", mov_harrypotter)
+		e.GET("/movindianajones", mov_indianajones)
+		e.GET("/movjamesbond", mov_jamesbond)
+		e.GET("/movjohnwayne", mov_johnwayne)
+		e.GET("/movjohnwick", mov_johnwick)
+		e.GET("/movjurrassicpark", mov_jurrassicpark)
+		e.GET("/movkingsman", mov_kingsman)
+		e.GET("/movmeninblack", mov_meninblack)
+		e.GET("/movminions", mov_minions)
+		e.GET("/movmisc", mov_misc)
+		e.GET("/movnicolascage", mov_nicolascage)
+		e.GET("/movoldies", mov_oldies)
+		e.GET("/movpirates", mov_pirates)
+		e.GET("/movriddick", mov_riddick)
+		e.GET("/movscifi", mov_scifi)
+		e.GET("/movstalone", mov_stalone)
+		e.GET("/movstartrek", mov_startrek)
+		e.GET("/movstarwars", mov_starwars)
+		e.GET("/movsuperheros", mov_superheros)
+		e.GET("/movtinkerbell", mov_tinkerbell)
+		e.GET("/movtomcruize", mov_tomcruize)
+		e.GET("/movtransformers", mov_transformers)
+		e.GET("/movtremors", mov_tremors)
+		e.GET("/movtherock", mov_therock)
+		e.GET("/movxmen", mov_xmen)
 
 		e.GET("/tvshows", mtv_tvshows)
 		e.GET("/tvaction", tv_action)
@@ -129,7 +148,36 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 }
 
 func mov_action(c echo.Context) error {
-	return c.Render(http.StatusOK, "mov_action", "WORKED")
+	
+	
+	
+		db, err := sql.Open("sqlite3", "/usr/share/mtvdb/mtv.db")
+		if err != nil {
+			return fmt.Errorf("failed to open database: %v", err)
+		}
+		defer db.Close()
+	
+		rows, err := db.Query("SELECT Name, Year, PosterAddr, Size, Path, Idx FROM movies WHERE Category = ?", "action")
+		if err != nil {
+			return fmt.Errorf("failed to execute query: %v", err)
+		}
+		defer rows.Close()
+	
+		var movies []MovieStruct
+		for rows.Next() {
+			var movie MovieStruct
+			if err := rows.Scan(&movie.Name, &movie.Year, &movie.PosterAddr, &movie.Size, &movie.Path, &movie.Idx); err != nil {
+				return fmt.Errorf("failed to scan row: %v", err)
+			}
+			movies = append(movies, movie)
+		}
+
+		if err := rows.Err(); err != nil {
+			return fmt.Errorf("rows iteration error: %v", err)
+		}
+	
+
+	return c.Render(http.StatusOK, "mov_action", movies)
 }
 
 func mov_arnold(c echo.Context) error {
@@ -144,16 +192,141 @@ func mov_brucewillis(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_brucewillis", "WORKED")
 }
 
+func mov_buzz(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_buzz", "WORKED")
+}
 
+func mov_cartoons(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_cartoons", "WORKED")
+}
 
+func mov_charliebrown(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_charliebrown", "WORKED")
+}
 
+func mov_chucknorris(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_chucknorris", "WORKED")
+}
 
+func mov_comedy(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_comedy", "WORKED")
+}
 
+func mov_documentary(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_documentary", "WORKED")
+}
 
+func mov_drama(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_drama", "WORKED")
+}
 
+func mov_fantasy(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_fantasy", "WORKED")
+}
 
+func mov_godzilla(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_godzilla", "WORKED")
+}
 
+func mov_harrypotter(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_harrypotter", "WORKED")
+}
 
+func mov_indianajones(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_indianajones", "WORKED")
+}
+
+func mov_jamesbond(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_jamesbond", "WORKED")
+}
+
+func mov_johnwayne(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_johnwayne", "WORKED")
+}
+
+func mov_johnwick(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_johnwick", "WORKED")
+}
+
+func mov_jurrassicpark(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_jurrassicpark", "WORKED")
+}
+
+func mov_kingsman(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_kingsman", "WORKED")
+}
+
+func mov_meninblack(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_meninblack", "WORKED")
+}
+
+func mov_minions(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_minions", "WORKED")
+}
+
+func mov_misc(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_misc", "WORKED")
+}
+
+func mov_nicolascage(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_nicolascage", "WORKED")
+}
+
+func mov_oldies(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_oldies", "WORKED")
+}
+
+func mov_pirates(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_pirates", "WORKED")
+}
+
+func mov_riddick(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_riddick", "WORKED")
+}
+
+func mov_scifi(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_scifi", "WORKED")
+}
+
+func mov_stalone(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_stalone", "WORKED")
+}
+
+func mov_startrek(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_startrek", "WORKED")
+}
+
+func mov_starwars(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_starwars", "WORKED")
+}
+
+func mov_superheros(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_superheros", "WORKED")
+}
+
+func mov_tinkerbell(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_tinkerbell", "WORKED")
+}
+
+func mov_tomcruize(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_tomcruize", "WORKED")
+}
+
+func mov_transformers(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_transformers", "WORKED")
+}
+
+func mov_tremors(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_tremors", "WORKED")
+}
+
+func mov_therock(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_therock", "WORKED")
+}
+
+func mov_xmen(c echo.Context) error {
+	return c.Render(http.StatusOK, "mov_xmen", "WORKED")
+}
 
 
 func mtv_index(c echo.Context) error {
