@@ -2,10 +2,9 @@
 
     <h1>MovAction</h1>
     {{ range . }}
-        <p>{{ .catagory }}</p>
-        <p>{{ .name }}</p>
-        <p>{{ .size }}</p>
-        <img src="{{ .httpthumbpath }}" />
+        <div class="link-card">
+            <img src="{{ .httpthumbpath }}" />
+        </div>
     {{ end }}
 
 {{ end }}
