@@ -169,6 +169,7 @@ func mov_action(c echo.Context) error {
 			log.Printf("failed to scan row: %v", err)
 			return fmt.Errorf("failed to scan row: %v", err)
 		}
+		log.Printf("movie: %v", movie)
 		movies = append(movies, movie)
 	}
 
