@@ -189,7 +189,7 @@ func mov_action(c echo.Context) error {
 		return fmt.Errorf("rows iteration error: %v", err)
 	}
 
-	return c.Render(http.StatusOK, "mov_action", movies)
+	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
 func mov_arnold(c echo.Context) error {
@@ -235,7 +235,7 @@ func mov_arnold(c echo.Context) error {
 		return fmt.Errorf("rows iteration error: %v", err)
 	}
 
-	return c.Render(http.StatusOK, "mov_action", movies)
+	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
 func mov_brucelee(c echo.Context) error {

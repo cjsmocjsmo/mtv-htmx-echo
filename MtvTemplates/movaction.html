@@ -1,15 +1,13 @@
 {{ define "mov_action" }}
 
-    <h2>Action</h2>
-    <div class="bar">
-        {{ range . }}
-            <div class="baz2">
-                <div class="link-card">
-                    <img src="{{ .httpthumbpath }}" />
-                </div>
-            </div>
-        {{ end }}
+<div class="bar">
+    {{ range . }}
+    <div class="baz2">
+        <div class="link-card">
+            <img src="{{ .httpthumbpath }}" />
+        </div>
     </div>
+    {{ end }}
+</div>
 
 {{ end }}
-
