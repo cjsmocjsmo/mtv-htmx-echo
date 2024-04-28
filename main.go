@@ -81,7 +81,7 @@ func main() {
 	e.Use(middleware.Gzip())
 	// e.Use(middleware.Recover())
 	t := &Template{
-		templates: template.Must(template.ParseGlob("MtvTemplates/*")),
+		templates: template.Must(template.ParseGlob("MtvTemplates/*/*")),
 	}
 	e.Renderer = t
 
