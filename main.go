@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"html/template"
 	"io"
-	// "log"
+	"log"
 
 	"net/http"
 
@@ -150,12 +150,14 @@ func mov_action(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
+		log.Printf("failed to open database: %v", err)
 		return fmt.Errorf("failed to open database: %v", err)
 	}
 	defer db.Close()
 
 	rows, err := db.Query("SELECT Name, Year, PosterAddr, Size, Path, Idx FROM movies WHERE Category = ?", "action")
 	if err != nil {
+		log.Printf("failed to execute query: %v", err)
 		return fmt.Errorf("failed to execute query: %v", err)
 	}
 	defer rows.Close()
@@ -164,12 +166,14 @@ func mov_action(c echo.Context) error {
 	for rows.Next() {
 		var movie MovieStruct
 		if err := rows.Scan(&movie.Name, &movie.Year, &movie.PosterAddr, &movie.Size, &movie.Path, &movie.Idx); err != nil {
+			log.Printf("failed to scan row: %v", err)
 			return fmt.Errorf("failed to scan row: %v", err)
 		}
 		movies = append(movies, movie)
 	}
 
 	if err := rows.Err(); err != nil {
+		log.Printf("rows iteration error: %v", err)
 		return fmt.Errorf("rows iteration error: %v", err)
 	}
 
