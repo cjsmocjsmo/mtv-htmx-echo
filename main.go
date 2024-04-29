@@ -120,7 +120,7 @@ func main() {
 	e.GET("/tvshows", mtv_tvshows)
 	e.GET("/tvaction", tv_action)
 	e.GET("/shogun", tv_action_shogun_seasons)
-	e.GET("/continental", tv_action_contenental_seasons)
+	e.GET("/continental", tv_action_continental_seasons)
 	e.GET("/tvcomedy", tv_comedy)
 	e.GET("/tvfantasy", tv_fantasy)
 	e.GET("/tvstartrek", tv_startrek)
@@ -498,7 +498,7 @@ func tv_action_shogun_seasons(c echo.Context) error {
 	return c.Render(http.StatusOK, "tvshowsseasons", data)
 }
 
-func tv_action_contenental_seasons(c echo.Context) error {
+func tv_action_continental_seasons(c echo.Context) error {
 	data := TVInfo("Continental", "01")
 	return c.Render(http.StatusOK, "tv_action_contenental", data)
 }
