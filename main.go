@@ -124,6 +124,7 @@ func main() {
 	e.GET("/tvcomedy", tv_comedy)
 	e.GET("/fuubar", tv_comedy_fuubar_seasons)
 	e.GET("/tvfantasy", tv_fantasy)
+	e.GET("/wheeloftime", tv_fantasy_wheeloftime_seasons)
 	e.GET("/tvstartrek", tv_startrek)
 	e.GET("/tvstarwars", tv_starwars)
 	e.GET("/tvscifi", tv_scifi)
