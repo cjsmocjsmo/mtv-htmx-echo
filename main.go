@@ -30,7 +30,7 @@ type MovieStruct struct {
 	httpthumbpath string
 }
 
-type TvShowStruct struct {
+type TvEpiStruct struct {
 	tvid     string
 	size     string
 	catagory string
@@ -39,6 +39,11 @@ type TvShowStruct struct {
 	episode  string
 	path     string
 	idx      string
+}
+
+type TVSeasonStruct struct {
+	season string
+	episodes []map[string]string
 }
 
 func checkDBExists() {
@@ -114,6 +119,8 @@ func main() {
 	e.GET("/movxmen", mov_xmen)
 	e.GET("/tvshows", mtv_tvshows)
 	e.GET("/tvaction", tv_action)
+	e.GET("/shogun", tv_action_shogun_seasons)
+	e.GET("/continental", tv_action_contenental_seasons)
 	e.GET("/tvcomedy", tv_comedy)
 	e.GET("/tvfantasy", tv_fantasy)
 	e.GET("/tvstartrek", tv_startrek)
@@ -155,62 +162,17 @@ func mtv_admin(c echo.Context) error {
 	return c.Render(http.StatusOK, "mtv_admin", "WORKED")
 }
 
-// func mov_info(catagory string) []map[string]string {
-// 	dbpath := os.Getenv("MTV_DB_PATH")
-// 	db, err := sql.Open("sqlite3", dbpath)
-// 	if err != nil {
-// 		log.Printf("failed to open database: %v", err)
-// 		log.Fatalf("failed to open database: %v", err)
-// 	}
-// 	defer db.Close()
-
-// 	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE catagory = ?", catagory)
-// 	if err != nil {
-// 		log.Printf("failed to execute query: %v", err)
-// 		log.Fatalf("failed to execute query: %v", err)
-// 	}
-// 	defer rows.Close()
-
-// 	var movies []map[string]string
-// 	for rows.Next() {
-// 		var movie MovieStruct
-// 		if err := rows.Scan(&movie.name, &movie.year, &movie.posteraddr, &movie.size, &movie.path, &movie.idx, &movie.movid, &movie.catagory, &movie.httpthumbpath); err != nil {
-// 			log.Printf("failed to scan row: %v", err)
-// 		}
-// 		var movinfo = map[string]string{
-// 			"name":          movie.name,
-// 			"year":          movie.year,
-// 			"posteraddr":    movie.posteraddr,
-// 			"size":          movie.size,
-// 			"path":          movie.path,
-// 			"idx":           movie.idx,
-// 			"movid":         movie.movid,
-// 			"catagory":      movie.catagory,
-// 			"httpthumbpath": movie.httpthumbpath,
-// 		}
-// 		log.Printf("movie: %v", movinfo)
-// 		movies = append(movies, movinfo)
-// 	}
-
-// 	if err := rows.Err(); err != nil {
-// 		log.Printf("rows iteration error: %v", err)
-// 	}
-// 	return movies
-// }
-func mov_action(c echo.Context) error {
-	// movies := mov_info("Action")
+func MovInfo(cat string) []map[string]string {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
 		log.Printf("failed to open database: %v", err)
-		return fmt.Errorf("failed to open database: %v", err)
 	}
 	defer db.Close()
 
-	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE catagory = ?", "Action")
+	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE catagory = ?", cat)
 	if err != nil {
 		log.Printf("failed to execute query: %v", err)
-		return fmt.Errorf("failed to execute query: %v", err)
 	}
 	defer rows.Close()
 
@@ -219,7 +181,6 @@ func mov_action(c echo.Context) error {
 		var movie MovieStruct
 		if err := rows.Scan(&movie.name, &movie.year, &movie.posteraddr, &movie.size, &movie.path, &movie.idx, &movie.movid, &movie.catagory, &movie.httpthumbpath); err != nil {
 			log.Printf("failed to scan row: %v", err)
-			return fmt.Errorf("failed to scan row: %v", err)
 		}
 		var movinfo = map[string]string{
 			"name":          movie.name,
@@ -238,8 +199,53 @@ func mov_action(c echo.Context) error {
 
 	if err := rows.Err(); err != nil {
 		log.Printf("rows iteration error: %v", err)
-		return fmt.Errorf("rows iteration error: %v", err)
 	}
+	return movies
+}
+
+func mov_action(c echo.Context) error {
+	// dbpath := os.Getenv("MTV_DB_PATH")
+	// db, err := sql.Open("sqlite3", dbpath)
+	// if err != nil {
+	// 	log.Printf("failed to open database: %v", err)
+	// 	return fmt.Errorf("failed to open database: %v", err)
+	// }
+	// defer db.Close()
+
+	// rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE catagory = ?", "Action")
+	// if err != nil {
+	// 	log.Printf("failed to execute query: %v", err)
+	// 	return fmt.Errorf("failed to execute query: %v", err)
+	// }
+	// defer rows.Close()
+
+	// var movies []map[string]string
+	// for rows.Next() {
+	// 	var movie MovieStruct
+	// 	if err := rows.Scan(&movie.name, &movie.year, &movie.posteraddr, &movie.size, &movie.path, &movie.idx, &movie.movid, &movie.catagory, &movie.httpthumbpath); err != nil {
+	// 		log.Printf("failed to scan row: %v", err)
+	// 		return fmt.Errorf("failed to scan row: %v", err)
+	// 	}
+	// 	var movinfo = map[string]string{
+	// 		"name":          movie.name,
+	// 		"year":          movie.year,
+	// 		"posteraddr":    movie.posteraddr,
+	// 		"size":          movie.size,
+	// 		"path":          movie.path,
+	// 		"idx":           movie.idx,
+	// 		"movid":         movie.movid,
+	// 		"catagory":      movie.catagory,
+	// 		"httpthumbpath": movie.httpthumbpath,
+	// 	}
+	// 	log.Printf("movie: %v", movinfo)
+	// 	movies = append(movies, movinfo)
+	// }
+
+	// if err := rows.Err(); err != nil {
+	// 	log.Printf("rows iteration error: %v", err)
+	// 	return fmt.Errorf("rows iteration error: %v", err)
+	// }
+	movies := MovInfo("Action")
 
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
@@ -289,8 +295,6 @@ func mov_arnold(c echo.Context) error {
 
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
-
-
 
 func mov_brucelee(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
@@ -1959,6 +1963,65 @@ func mov_xmen(c echo.Context) error {
 func tv_action(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_action", "WORKED")
 }
+func tv_action_shogun_seasons(c echo.Context) error {
+	dbpath := os.Getenv("MTV_DB_PATH")
+	db, err := sql.Open("sqlite3", dbpath)
+	if err != nil {
+		log.Printf("failed to open database: %v", err)
+		return fmt.Errorf("failed to open database: %v", err)
+	}
+	defer db.Close()
+
+	rows, err := db.Query("SELECT tvid, size, catagory, name, season, episode, path, idx FROM tvshows WHERE catagory = ? AND episode = ?", "XMen", "01")
+	if err != nil {
+		log.Printf("failed to execute query: %v", err)
+		return fmt.Errorf("failed to execute query: %v", err)
+	}
+	defer rows.Close()
+
+	var sea1EpiInfo []map[string]string
+	for rows.Next() {
+		var tv TvEpiStruct
+		if err := rows.Scan(&tv.tvid, &tv.size, &tv.catagory, &tv.name, &tv.season, &tv.episode, &tv.path, &tv.idx); err != nil {
+			log.Printf("failed to scan row: %v", err)
+			return fmt.Errorf("failed to scan row: %v", err)
+		}
+		epiInfo := map[string]string{
+			"tvid"   : tv.tvid,
+			"size"   : tv.size,
+			"catagory" : tv.catagory,
+			"name"   : tv.name,
+			"season" : tv.season,
+			"episode": tv.episode,
+			"path"   : tv.path,
+			"idx"    : tv.idx,
+		}
+		log.Printf("epiInfo: %v", epiInfo)
+		sea1EpiInfo = append(sea1EpiInfo, epiInfo)
+	}
+
+	data := TVSeasonStruct{
+		season: "01",
+		episodes: sea1EpiInfo,
+	}
+	log.Printf("data: %v", data)
+
+	if err := rows.Err(); err != nil {
+		log.Printf("rows iteration error: %v", err)
+		return fmt.Errorf("rows iteration error: %v", err)
+	}
+	return c.Render(http.StatusOK, "tvshowsseasons", data)
+}
+
+func tv_action_contenental_seasons(c echo.Context) error {
+	return c.Render(http.StatusOK, "tv_action_contenental", "WORKED")
+}
+
+
+
+
+
+
 
 func tv_comedy(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_comedy", "WORKED")
@@ -1992,7 +2055,3 @@ func tv_western(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_western", "WORKED")
 }
 
-func tv_shogun_seasons(c echo.Context) error {
-	//get season info from db
-	return c.Render(http.StatusOK, "tvshowsseasons", "WORKED")
-}
