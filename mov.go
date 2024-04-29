@@ -14,7 +14,7 @@ import (
 	"os"
 )
 
-func mov_action(c echo.Context) error {
+func Mov_action(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -60,7 +60,7 @@ func mov_action(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_arnold(c echo.Context) error {
+func Mov_arnold(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -106,7 +106,7 @@ func mov_arnold(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_brucelee(c echo.Context) error {
+func Mov_brucelee(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -152,7 +152,7 @@ func mov_brucelee(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_brucewillis(c echo.Context) error {
+func Mov_brucewillis(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -198,7 +198,7 @@ func mov_brucewillis(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_buzz(c echo.Context) error {
+func Mov_buzz(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -244,7 +244,7 @@ func mov_buzz(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_cartoons(c echo.Context) error {
+func Mov_cartoons(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -290,7 +290,7 @@ func mov_cartoons(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_charliebrown(c echo.Context) error {
+func Mov_charliebrown(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -336,7 +336,7 @@ func mov_charliebrown(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_chucknorris(c echo.Context) error {
+func Mov_chucknorris(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -382,7 +382,7 @@ func mov_chucknorris(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_comedy(c echo.Context) error {
+func Mov_comedy(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -428,7 +428,7 @@ func mov_comedy(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_documentary(c echo.Context) error {
+func Mov_documentary(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -474,7 +474,7 @@ func mov_documentary(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_drama(c echo.Context) error {
+func Mov_drama(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -520,7 +520,7 @@ func mov_drama(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_fantasy(c echo.Context) error {
+func Mov_fantasy(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -566,7 +566,7 @@ func mov_fantasy(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_godzilla(c echo.Context) error {
+func Mov_godzilla(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -612,7 +612,7 @@ func mov_godzilla(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_harrypotter(c echo.Context) error {
+func Mov_harrypotter(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -658,7 +658,7 @@ func mov_harrypotter(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_indianajones(c echo.Context) error {
+func Mov_indianajones(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -704,7 +704,7 @@ func mov_indianajones(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_jamesbond(c echo.Context) error {
+func Mov_jamesbond(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -750,7 +750,7 @@ func mov_jamesbond(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_johnwayne(c echo.Context) error {
+func Mov_johnwayne(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -796,7 +796,7 @@ func mov_johnwayne(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_johnwick(c echo.Context) error {
+func Mov_johnwick(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -842,7 +842,7 @@ func mov_johnwick(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_jurrassicpark(c echo.Context) error {
+func Mov_jurrassicpark(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -888,7 +888,7 @@ func mov_jurrassicpark(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_kingsman(c echo.Context) error {
+func Mov_kingsman(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -934,7 +934,7 @@ func mov_kingsman(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_meninblack(c echo.Context) error {
+func Mov_meninblack(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -980,7 +980,7 @@ func mov_meninblack(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_minions(c echo.Context) error {
+func Mov_minions(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1026,7 +1026,7 @@ func mov_minions(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_misc(c echo.Context) error {
+func Mov_misc(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1072,7 +1072,7 @@ func mov_misc(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_nicolascage(c echo.Context) error {
+func Mov_nicolascage(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1118,7 +1118,7 @@ func mov_nicolascage(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_oldies(c echo.Context) error {
+func Mov_oldies(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1164,7 +1164,7 @@ func mov_oldies(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_pirates(c echo.Context) error {
+func Mov_pirates(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1210,7 +1210,7 @@ func mov_pirates(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_riddick(c echo.Context) error {
+func Mov_riddick(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1256,7 +1256,7 @@ func mov_riddick(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_scifi(c echo.Context) error {
+func Mov_scifi(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1302,7 +1302,7 @@ func mov_scifi(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_stalone(c echo.Context) error {
+func Mov_stalone(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1348,7 +1348,7 @@ func mov_stalone(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_startrek(c echo.Context) error {
+func Mov_startrek(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1394,7 +1394,7 @@ func mov_startrek(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_starwars(c echo.Context) error {
+func Mov_starwars(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1444,7 +1444,7 @@ func mov_starwars(c echo.Context) error {
 
 
 
-func mov_superheros(c echo.Context) error {
+func Mov_superheros(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1490,7 +1490,7 @@ func mov_superheros(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_tinkerbell(c echo.Context) error {
+func Mov_tinkerbell(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1536,7 +1536,7 @@ func mov_tinkerbell(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_tomcruize(c echo.Context) error {
+func Mov_tomcruize(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1582,7 +1582,7 @@ func mov_tomcruize(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_transformers(c echo.Context) error {
+func Mov_transformers(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1628,7 +1628,7 @@ func mov_transformers(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_tremors(c echo.Context) error {
+func Mov_tremors(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1674,7 +1674,7 @@ func mov_tremors(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_therock(c echo.Context) error {
+func Mov_therock(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
@@ -1720,7 +1720,7 @@ func mov_therock(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-func mov_xmen(c echo.Context) error {
+func Mov_xmen(c echo.Context) error {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {

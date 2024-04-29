@@ -74,44 +74,44 @@ func main() {
 
 	e.GET("/", mtv_index)
 	e.GET("/movies", mtv_movies)
-	e.GET("/movaction", mov_action)
-	e.GET("/movarnold", mov_arnold)
-	e.GET("/movbrucelee", mov_brucelee)
-	e.GET("/movbrucewillis", mov_brucewillis)
-	e.GET("/movbuzz", mov_buzz)
-	e.GET("/movcartoons", mov_cartoons)
-	e.GET("/movcharliebrown", mov_charliebrown)
-	e.GET("/movchucknorris", mov_chucknorris)
-	e.GET("/movcomedy", mov_comedy)
-	e.GET("/movdocumentary", mov_documentary)
-	e.GET("/movdrama", mov_drama)
-	e.GET("/movfantasy", mov_fantasy)
-	e.GET("/movgodzilla", mov_godzilla)
-	e.GET("/movharrypotter", mov_harrypotter)
-	e.GET("/movindianajones", mov_indianajones)
-	e.GET("/movjamesbond", mov_jamesbond)
-	e.GET("/movjohnwayne", mov_johnwayne)
-	e.GET("/movjohnwick", mov_johnwick)
-	e.GET("/movjurrassicpark", mov_jurrassicpark)
-	e.GET("/movkingsman", mov_kingsman)
-	e.GET("/movmeninblack", mov_meninblack)
-	e.GET("/movminions", mov_minions)
-	e.GET("/movmisc", mov_misc)
-	e.GET("/movnicolascage", mov_nicolascage)
-	e.GET("/movoldies", mov_oldies)
-	e.GET("/movpirates", mov_pirates)
-	e.GET("/movriddick", mov_riddick)
-	e.GET("/movscifi", mov_scifi)
-	e.GET("/movstalone", mov_stalone)
-	e.GET("/movstartrek", mov_startrek)
-	e.GET("/movstarwars", mov_starwars)
-	e.GET("/movsuperheros", mov_superheros)
-	e.GET("/movtinkerbell", mov_tinkerbell)
-	e.GET("/movtomcruize", mov_tomcruize)
-	e.GET("/movtransformers", mov_transformers)
-	e.GET("/movtremors", mov_tremors)
-	e.GET("/movtherock", mov_therock)
-	e.GET("/movxmen", mov_xmen)
+	e.GET("/movaction", Mov_action)
+	e.GET("/movarnold", Mov_arnold)
+	e.GET("/movbrucelee", Mov_brucelee)
+	e.GET("/movbrucewillis", Mov_brucewillis)
+	e.GET("/movbuzz", Mov_buzz)
+	e.GET("/movcartoons", Mov_cartoons)
+	e.GET("/movcharliebrown", Mov_charliebrown)
+	e.GET("/movchucknorris", Mov_chucknorris)
+	e.GET("/movcomedy", Mov_comedy)
+	e.GET("/movdocumentary", Mov_documentary)
+	e.GET("/movdrama", Mov_drama)
+	e.GET("/movfantasy", Mov_fantasy)
+	e.GET("/movgodzilla", Mov_godzilla)
+	e.GET("/movharrypotter", Mov_harrypotter)
+	e.GET("/movindianajones", Mov_indianajones)
+	e.GET("/movjamesbond", Mov_jamesbond)
+	e.GET("/movjohnwayne", Mov_johnwayne)
+	e.GET("/movjohnwick", Mov_johnwick)
+	e.GET("/movjurrassicpark", Mov_jurrassicpark)
+	e.GET("/movkingsman", Mov_kingsman)
+	e.GET("/movmeninblack", Mov_meninblack)
+	e.GET("/movminions", Mov_minions)
+	e.GET("/movmisc", Mov_misc)
+	e.GET("/movnicolascage", Mov_nicolascage)
+	e.GET("/movoldies", Mov_oldies)
+	e.GET("/movpirates", Mov_pirates)
+	e.GET("/movriddick", Mov_riddick)
+	e.GET("/movscifi", Mov_scifi)
+	e.GET("/movstalone", Mov_stalone)
+	e.GET("/movstartrek", Mov_startrek)
+	e.GET("/movstarwars", Mov_starwars)
+	e.GET("/movsuperheros", Mov_superheros)
+	e.GET("/movtinkerbell", Mov_tinkerbell)
+	e.GET("/movtomcruize", Mov_tomcruize)
+	e.GET("/movtransformers", Mov_transformers)
+	e.GET("/movtremors", Mov_tremors)
+	e.GET("/movtherock", Mov_therock)
+	e.GET("/movxmen", Mov_xmen)
 	e.GET("/tvshows", mtv_tvshows)
 	e.GET("/tvaction", tv_action)
 	e.GET("/tvcomedy", tv_comedy)
@@ -132,7 +132,7 @@ func main() {
 func playmovie(c echo.Context) error {
 	movid := c.Param("movid")
 	fmt.Printf("movid: %s\n", movid)
-	return c.Render(http.StatusOK, "mov_play", movid)
+	return c.Render(http.StatusOK, "Mov_play", movid)
 }
 
 func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
@@ -155,7 +155,7 @@ func mtv_admin(c echo.Context) error {
 	return c.Render(http.StatusOK, "mtv_admin", "WORKED")
 }
 
-// func mov_action(c echo.Context) error {
+// func Mov_action(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -198,10 +198,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_arnold(c echo.Context) error {
+// func Mov_arnold(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -244,10 +244,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_brucelee(c echo.Context) error {
+// func Mov_brucelee(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -290,10 +290,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_brucewillis(c echo.Context) error {
+// func Mov_brucewillis(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -336,10 +336,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_buzz(c echo.Context) error {
+// func Mov_buzz(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -382,10 +382,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_cartoons(c echo.Context) error {
+// func Mov_cartoons(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -428,10 +428,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_charliebrown(c echo.Context) error {
+// func Mov_charliebrown(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -474,10 +474,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_chucknorris(c echo.Context) error {
+// func Mov_chucknorris(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -520,10 +520,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_comedy(c echo.Context) error {
+// func Mov_comedy(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -566,10 +566,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_documentary(c echo.Context) error {
+// func Mov_documentary(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -612,10 +612,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_drama(c echo.Context) error {
+// func Mov_drama(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -658,10 +658,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_fantasy(c echo.Context) error {
+// func Mov_fantasy(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -704,10 +704,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_godzilla(c echo.Context) error {
+// func Mov_godzilla(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -750,10 +750,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_harrypotter(c echo.Context) error {
+// func Mov_harrypotter(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -796,10 +796,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_indianajones(c echo.Context) error {
+// func Mov_indianajones(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -842,10 +842,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_jamesbond(c echo.Context) error {
+// func Mov_jamesbond(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -888,10 +888,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_johnwayne(c echo.Context) error {
+// func Mov_johnwayne(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -934,10 +934,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_johnwick(c echo.Context) error {
+// func Mov_johnwick(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -980,10 +980,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_jurrassicpark(c echo.Context) error {
+// func Mov_jurrassicpark(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1026,10 +1026,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_kingsman(c echo.Context) error {
+// func Mov_kingsman(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1072,10 +1072,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_meninblack(c echo.Context) error {
+// func Mov_meninblack(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1118,10 +1118,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_minions(c echo.Context) error {
+// func Mov_minions(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1164,10 +1164,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_misc(c echo.Context) error {
+// func Mov_misc(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1210,10 +1210,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_nicolascage(c echo.Context) error {
+// func Mov_nicolascage(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1256,10 +1256,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_oldies(c echo.Context) error {
+// func Mov_oldies(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1302,10 +1302,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_pirates(c echo.Context) error {
+// func Mov_pirates(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1348,10 +1348,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_riddick(c echo.Context) error {
+// func Mov_riddick(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1394,10 +1394,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_scifi(c echo.Context) error {
+// func Mov_scifi(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1440,10 +1440,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_stalone(c echo.Context) error {
+// func Mov_stalone(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1486,10 +1486,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_startrek(c echo.Context) error {
+// func Mov_startrek(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1532,10 +1532,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_starwars(c echo.Context) error {
+// func Mov_starwars(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1578,10 +1578,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_superheros(c echo.Context) error {
+// func Mov_superheros(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1624,10 +1624,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_tinkerbell(c echo.Context) error {
+// func Mov_tinkerbell(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1670,10 +1670,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_tomcruize(c echo.Context) error {
+// func Mov_tomcruize(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1716,10 +1716,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_transformers(c echo.Context) error {
+// func Mov_transformers(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1762,10 +1762,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_tremors(c echo.Context) error {
+// func Mov_tremors(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1808,10 +1808,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_therock(c echo.Context) error {
+// func Mov_therock(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1854,10 +1854,10 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
-// func mov_xmen(c echo.Context) error {
+// func Mov_xmen(c echo.Context) error {
 // 	dbpath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbpath)
 // 	if err != nil {
@@ -1900,7 +1900,7 @@ func mtv_admin(c echo.Context) error {
 // 		return fmt.Errorf("rows iteration error: %v", err)
 // 	}
 
-// 	return c.Render(http.StatusOK, "mov_movie", movies)
+// 	return c.Render(http.StatusOK, "Mov_movie", movies)
 // }
 
 
