@@ -125,6 +125,8 @@ func main() {
 	e.GET("/fuubar", tv_comedy_fuubar_seasons)
 	e.GET("/tvfantasy", tv_fantasy)
 	e.GET("/wheeloftime", tv_fantasy_wheeloftime_seasons)
+	e.GET("/ringsOfPower", tv_fantasy_TheLordOfTheRingsTheRingsOfPower_seasons)
+	e.GET("/houseofthedragon", tv_fantasy_houseofthedragon_seasons)
 	e.GET("/tvstartrek", tv_startrek)
 	e.GET("/tvstarwars", tv_starwars)
 	e.GET("/tvscifi", tv_scifi)
@@ -483,6 +485,18 @@ func tv_fantasy_wheeloftime_seasons(c echo.Context) error {
 	data = append(data, sea1)
 	sea2 := TVInfo("WheelOfTime", "02")
 	data = append(data, sea2)
+	return c.Render(http.StatusOK, "tvshowsseasons", data)
+}
+func tv_fantasy_TheLordOfTheRingsTheRingsOfPower_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("RingsOfPower", "01")
+	data = append(data, sea1)
+	return c.Render(http.StatusOK, "tvshowsseasons", data)
+}
+func tv_fantasy_houseofthedragon_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("HouseOfTheDragon", "01")
+	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tvshowsseasons", data)
 }
 
