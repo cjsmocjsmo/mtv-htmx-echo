@@ -413,7 +413,7 @@ func tv_action_shogun_seasons(c echo.Context) error {
 	}
 	defer db.Close()
 
-	rows, err := db.Query("SELECT tvid, size, catagory, name, season, episode, path, idx FROM tvshows WHERE catagory = ? AND episode = ?", "Shogun", "01")
+	rows, err := db.Query("SELECT tvid, size, catagory, name, season, episode, path, idx FROM tvshows WHERE catagory = ? AND season = ?", "Shogun", "01")
 	if err != nil {
 		log.Printf("failed to execute query: %v", err)
 		return fmt.Errorf("failed to execute query: %v", err)
@@ -437,7 +437,7 @@ func tv_action_shogun_seasons(c echo.Context) error {
 			"path"   : tv.path,
 			"idx"    : tv.idx,
 		}
-		log.Printf("epiInfo: %v", epiInfo)
+		// log.Printf("epiInfo: %v", epiInfo)
 		sea1EpiInfo = append(sea1EpiInfo, epiInfo)
 	}
 
