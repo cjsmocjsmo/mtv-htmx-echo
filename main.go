@@ -170,7 +170,7 @@ func MovInfo(cat string) []map[string]string {
 	}
 	defer db.Close()
 
-	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE catagory = ?", cat)
+	rows, err := db.Query("SELECT name, year, posteraddr, size, path, idx, movid, catagory, httpthumbpath FROM movies WHERE catagory = ? ORDER BY year DESC", cat)
 	if err != nil {
 		log.Printf("failed to execute query: %v", err)
 	}
@@ -413,7 +413,7 @@ func tv_action_shogun_seasons(c echo.Context) error {
 	}
 	defer db.Close()
 
-	rows, err := db.Query("SELECT tvid, size, catagory, name, season, episode, path, idx FROM tvshows WHERE catagory = ? AND episode = ?", "XMen", "01")
+	rows, err := db.Query("SELECT tvid, size, catagory, name, season, episode, path, idx FROM tvshows WHERE catagory = ? AND episode = ?", "Shogun", "01")
 	if err != nil {
 		log.Printf("failed to execute query: %v", err)
 		return fmt.Errorf("failed to execute query: %v", err)
