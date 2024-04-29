@@ -436,7 +436,7 @@ func TVInfo(cat string, sea string) TVSeasonStruct {
 	}
 
 	data := TVSeasonStruct{
-		season: "01",
+		season: sea,
 		episodes: sea1EpiInfo,
 	}
 	log.Printf("data: %v", data)
