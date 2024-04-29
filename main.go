@@ -397,26 +397,17 @@ func mov_xmen(c echo.Context) error {
 
 
 
-
-
-
-
-func tv_action(c echo.Context) error {
-	return c.Render(http.StatusOK, "tv_action", "WORKED")
-}
-func tv_action_shogun_seasons(c echo.Context) error {
+func TVInfo(cat string, sea string) TVSeasonStruct {
 	dbpath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbpath)
 	if err != nil {
 		log.Printf("failed to open database: %v", err)
-		return fmt.Errorf("failed to open database: %v", err)
 	}
 	defer db.Close()
 
-	rows, err := db.Query("SELECT tvid, size, catagory, name, season, episode, path, idx FROM tvshows WHERE catagory = ? AND season = ?", "Shogun", "01")
+	rows, err := db.Query("SELECT tvid, size, catagory, name, season, episode, path, idx FROM tvshows WHERE catagory = ? AND season = ?", cat, sea)
 	if err != nil {
 		log.Printf("failed to execute query: %v", err)
-		return fmt.Errorf("failed to execute query: %v", err)
 	}
 	defer rows.Close()
 
@@ -425,7 +416,6 @@ func tv_action_shogun_seasons(c echo.Context) error {
 		var tv TvEpiStruct
 		if err := rows.Scan(&tv.tvid, &tv.size, &tv.catagory, &tv.name, &tv.season, &tv.episode, &tv.path, &tv.idx); err != nil {
 			log.Printf("failed to scan row: %v", err)
-			return fmt.Errorf("failed to scan row: %v", err)
 		}
 		epiInfo := map[string]string{
 			"tvid"   : tv.tvid,
@@ -449,13 +439,68 @@ func tv_action_shogun_seasons(c echo.Context) error {
 
 	if err := rows.Err(); err != nil {
 		log.Printf("rows iteration error: %v", err)
-		return fmt.Errorf("rows iteration error: %v", err)
 	}
+	return data
+}
+
+
+func tv_action(c echo.Context) error {
+	return c.Render(http.StatusOK, "tv_action", "WORKED")
+}
+func tv_action_shogun_seasons(c echo.Context) error {
+	// dbpath := os.Getenv("MTV_DB_PATH")
+	// db, err := sql.Open("sqlite3", dbpath)
+	// if err != nil {
+	// 	log.Printf("failed to open database: %v", err)
+	// 	return fmt.Errorf("failed to open database: %v", err)
+	// }
+	// defer db.Close()
+
+	// rows, err := db.Query("SELECT tvid, size, catagory, name, season, episode, path, idx FROM tvshows WHERE catagory = ? AND season = ?", "Shogun", "01")
+	// if err != nil {
+	// 	log.Printf("failed to execute query: %v", err)
+	// 	return fmt.Errorf("failed to execute query: %v", err)
+	// }
+	// defer rows.Close()
+
+	// var sea1EpiInfo []map[string]string
+	// for rows.Next() {
+	// 	var tv TvEpiStruct
+	// 	if err := rows.Scan(&tv.tvid, &tv.size, &tv.catagory, &tv.name, &tv.season, &tv.episode, &tv.path, &tv.idx); err != nil {
+	// 		log.Printf("failed to scan row: %v", err)
+	// 		return fmt.Errorf("failed to scan row: %v", err)
+	// 	}
+	// 	epiInfo := map[string]string{
+	// 		"tvid"   : tv.tvid,
+	// 		"size"   : tv.size,
+	// 		"catagory" : tv.catagory,
+	// 		"name"   : tv.name,
+	// 		"season" : tv.season,
+	// 		"episode": tv.episode,
+	// 		"path"   : tv.path,
+	// 		"idx"    : tv.idx,
+	// 	}
+	// 	// log.Printf("epiInfo: %v", epiInfo)
+	// 	sea1EpiInfo = append(sea1EpiInfo, epiInfo)
+	// }
+
+	// data := TVSeasonStruct{
+	// 	season: "01",
+	// 	episodes: sea1EpiInfo,
+	// }
+	// log.Printf("data: %v", data)
+
+	// if err := rows.Err(); err != nil {
+	// 	log.Printf("rows iteration error: %v", err)
+	// 	return fmt.Errorf("rows iteration error: %v", err)
+	// }
+	data := TVInfo("Shogun", "01")
 	return c.Render(http.StatusOK, "tvshowsseasons", data)
 }
 
 func tv_action_contenental_seasons(c echo.Context) error {
-	return c.Render(http.StatusOK, "tv_action_contenental", "WORKED")
+	data := TVInfo("Continental", "01")
+	return c.Render(http.StatusOK, "tv_action_contenental", data)
 }
 
 
