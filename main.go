@@ -164,7 +164,16 @@ func main() {
 	e.GET("/tvscience", tv_science)
 	e.GET("/prehistoricplanet", tv_science_prehistoricplanet_seasons)
 	e.GET("/tvmcu", tv_mcu)
-
+	e.GET("/falconwintersoldier", tv_mcu_falconwintersoldier_seasons)
+	e.GET("/iamgroot", tv_mcu_iamgroot_seasons)
+	e.GET("/loki", tv_mcu_loki_seasons)
+	e.GET("/moonknight", tv_mcu_moonknight_seasons)
+	e.GET("/msMarvel", tv_mcu_msMarvel_seasons)
+	e.GET("/shehulk", tv_mcu_shehulk_seasons)
+	e.GET("/whatif", tv_mcu_whatif_seasons)
+	e.GET("/wandaVision", tv_mcu_wandavision_seasons)
+	e.GET("/hawkeye", tv_mcu_hawkeye_seasons)
+	e.GET("/secretInvasion", tv_mcu_secretinvasion_seasons)
 	e.GET("/tvwestern", tv_western)
 	e.GET("/1923", tv_western_1923_seasons)
 	e.GET("/admin", mtv_admin)
@@ -835,18 +844,72 @@ func tv_science_prehistoricplanet_seasons(c echo.Context) error {
 func tv_mcu(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_mcu", "WORKED")
 }
-
-
-
-
-
-
-
-
-
-
-
-
+func tv_mcu_falconwintersoldier_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("FalconWinterSoldier", "01")
+	data = append(data, sea1)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_mcu_iamgroot_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("IAmGroot", "01")
+	data = append(data, sea1)
+	sea2 := TVInfo("IAmGroot", "02")
+	data = append(data, sea2)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_mcu_loki_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("Loki", "01")
+	data = append(data, sea1)
+	sea2 := TVInfo("Loki", "02")
+	data = append(data, sea2)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_mcu_moonknight_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("MoonKnight", "01")
+	data = append(data, sea1)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_mcu_msMarvel_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("MsMarvel", "01")
+	data = append(data, sea1)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_mcu_shehulk_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("SheHulk", "01")
+	data = append(data, sea1)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_mcu_wandavision_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("WandaVision", "01")
+	data = append(data, sea1)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_mcu_whatif_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("WhatIf", "01")
+	data = append(data, sea1)
+	sea2 := TVInfo("WhatIf", "02")
+	data = append(data, sea2)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_mcu_hawkeye_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("Hawkeye", "01")
+	data = append(data, sea1)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_mcu_secretinvasion_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("SecretInvasion", "01")
+	data = append(data, sea1)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
 
 
 func tv_western(c echo.Context) error {
