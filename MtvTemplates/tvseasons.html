@@ -1,8 +1,8 @@
 {{ define "mtv_season" }}
     <div>
-        <h1>Shogun Seasons</h1>
-        {{ range . }}
-            {{ . }} <br>
+        <h1>Shogun Seasons {{ .season }}</h1>
+        {{ range .episodes }}
+            {{ .path }} <br>
         {{ end }}
     </div>
 {{ end }}
