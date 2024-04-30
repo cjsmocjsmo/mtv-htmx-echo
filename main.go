@@ -452,7 +452,7 @@ func TVInfo(cat string, sea string) []map[string]string {
 	}
 	defer db.Close()
 
-	rows, err := db.Query("SELECT tvid, size, catagory, name, season, episode, path, idx FROM tvshows WHERE catagory = ? AND season = ?", cat, sea)
+	rows, err := db.Query("SELECT tvid, size, catagory, name, season, episode, path, idx FROM tvshows WHERE catagory = ? AND season = ? ORDER BY episode ASC", cat, sea)
 	if err != nil {
 		log.Printf("failed to execute query: %v", err)
 	}
