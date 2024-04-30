@@ -499,7 +499,7 @@ func tv_action_shogun_seasons(c echo.Context) error {
 	sea1 := TVInfo("Shogun", "01")
 	data = append(data, sea1)
 	println(data)
-	return c.Render(http.StatusOK, "mtv_seasons", "WORKED")
+	return c.Render(http.StatusOK, "mtv_season", "WORKED")
 }
 func tv_action_continental_seasons(c echo.Context) error {
 	var data []TVSeasonStruct
