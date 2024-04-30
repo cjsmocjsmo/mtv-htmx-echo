@@ -43,7 +43,7 @@ type TvEpiStruct struct {
 
 type TVSeasonStruct struct {
 	season string
-	episodes []map[string]string
+	episodes []TvEpiStruct
 }
 
 func checkDBExists() {
@@ -458,21 +458,34 @@ func TVInfo(cat string, sea string) TVSeasonStruct {
 	}
 	defer rows.Close()
 
-	var sea1EpiInfo []map[string]string
+	var sea1EpiInfo []TvEpiStruct
 	for rows.Next() {
 		var tv TvEpiStruct
 		if err := rows.Scan(&tv.tvid, &tv.size, &tv.catagory, &tv.name, &tv.season, &tv.episode, &tv.path, &tv.idx); err != nil {
 			log.Printf("failed to scan row: %v", err)
 		}
-		epiInfo := map[string]string{
-			"tvid"   : tv.tvid,
-			"size"   : tv.size,
-			"catagory" : tv.catagory,
-			"name"   : tv.name,
-			"season" : tv.season,
-			"episode": tv.episode,
-			"path"   : tv.path,
-			"idx"    : tv.idx,
+		// epiInfo := map[string]string{
+		// 	"tvid"   : tv.tvid,
+		// 	"size"   : tv.size,
+		// 	"catagory" : tv.catagory,
+		// 	"name"   : tv.name,
+		// 	"season" : tv.season,
+		// 	"episode": tv.episode,
+		// 	"path"   : tv.path,
+		// 	"idx"    : tv.idx,
+		// }
+		// // log.Printf("epiInfo: %v", epiInfo)
+		// sea1EpiInfo = append(sea1EpiInfo, epiInfo)
+
+		epiInfo := TvEpiStruct{
+			tvid   : tv.tvid,
+			size   : tv.size,
+			catagory : tv.catagory,
+			name   : tv.name,
+			season : tv.season,
+			episode: tv.episode,
+			path   : tv.path,
+			idx    : tv.idx,
 		}
 		// log.Printf("epiInfo: %v", epiInfo)
 		sea1EpiInfo = append(sea1EpiInfo, epiInfo)
