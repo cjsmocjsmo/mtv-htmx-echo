@@ -128,7 +128,17 @@ func main() {
 	e.GET("/ringsOfPower", tv_fantasy_TheLordOfTheRingsTheRingsOfPower_seasons)
 	e.GET("/houseofthedragon", tv_fantasy_houseofthedragon_seasons)
 	e.GET("/tvstartrek", tv_startrek)
+	e.GET("/strangenewworlds", tv_startrek_strangenewworlds_seasons)
+	e.GET("/discovery", tv_startrek_discovery_seasons)
+	e.GET("/picard", tv_startrek_picard_seasons)
+	e.GET("/lowerdecks", tv_startrek_lowerdecks_seasons)
+	e.GET("/prodigy", tv_startrek_prodigy_seasons)
+	e.GET("/enterprise", tv_startrek_enterprise_seasons)
+	e.GET("/voyager", tv_startrek_voyager_seasons)
+	e.GET("/nextgeneration", tv_startrek_nextgeneration_seasons)
+	e.GET("/sttv", tv_startrek_sttv_seasons)
 	e.GET("/tvstarwars", tv_starwars)
+
 	e.GET("/tvscifi", tv_scifi)
 	e.GET("/tvscience", tv_science)
 	e.GET("/tvmcu", tv_mcu)
@@ -455,13 +465,13 @@ func tv_action_shogun_seasons(c echo.Context) error {
 	var data []TVSeasonStruct
 	sea1 := TVInfo("Shogun", "01")
 	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tvshowsseasons", data)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
 }
 func tv_action_continental_seasons(c echo.Context) error {
 	var data []TVSeasonStruct
 	sea1 := TVInfo("TheContinental", "01")
 	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_action_contenental", data)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
 }
 
 
@@ -472,7 +482,7 @@ func tv_comedy_fuubar_seasons(c echo.Context) error {
 	var data []TVSeasonStruct
 	sea1 := TVInfo("FuuBar", "01")
 	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tvshowsseasons", data)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
 }
 
 
@@ -485,35 +495,146 @@ func tv_fantasy_wheeloftime_seasons(c echo.Context) error {
 	data = append(data, sea1)
 	sea2 := TVInfo("WheelOfTime", "02")
 	data = append(data, sea2)
-	return c.Render(http.StatusOK, "tvshowsseasons", data)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
 }
 func tv_fantasy_TheLordOfTheRingsTheRingsOfPower_seasons(c echo.Context) error {
 	var data []TVSeasonStruct
 	sea1 := TVInfo("RingsOfPower", "01")
 	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tvshowsseasons", data)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
 }
 func tv_fantasy_houseofthedragon_seasons(c echo.Context) error {
 	var data []TVSeasonStruct
 	sea1 := TVInfo("HouseOfTheDragon", "01")
 	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tvshowsseasons", data)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
 }
-
-
-
-
-
-
-
-
-
-
 
 
 func tv_startrek(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_startrek", "WORKED")
 }
+func tv_startrek_strangenewworlds_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("StrangeNewWorlds", "01")
+	data = append(data, sea1)
+	sea2 := TVInfo("StrangeNewWorlds", "02")
+	data = append(data, sea2)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_startrek_discovery_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("Discovery", "01")
+	data = append(data, sea1)
+	sea2 := TVInfo("Discovery", "02")
+	data = append(data, sea2)
+	sea3 := TVInfo("Discovery", "03")
+	data = append(data, sea3)
+	sea4 := TVInfo("Discovery", "04")
+	data = append(data, sea4)
+	sea5 := TVInfo("Discovery", "05")
+	data = append(data, sea5)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_startrek_picard_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("Picard", "01")
+	data = append(data, sea1)
+	sea2 := TVInfo("Picard", "02")
+	data = append(data, sea2)
+	sea3 := TVInfo("Picard", "03")
+	data = append(data, sea3)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_startrek_lowerdecks_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("LowerDecks", "01")
+	data = append(data, sea1)
+	sea2 := TVInfo("LowerDecks", "02")
+	data = append(data, sea2)
+	sea3 := TVInfo("LowerDecks", "03")
+	data = append(data, sea3)
+	sea4 := TVInfo("LowerDecks", "04")
+	data = append(data, sea4)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_startrek_prodigy_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("Prodigy", "01")
+	data = append(data, sea1)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_startrek_enterprise_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("Enterprise", "01")
+	data = append(data, sea1)
+	sea2 := TVInfo("Enterprise", "02")
+	data = append(data, sea2)
+	sea3 := TVInfo("Enterprise", "03")
+	data = append(data, sea3)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_startrek_voyager_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("Voyager", "01")
+	data = append(data, sea1)
+	sea2 := TVInfo("Voyager", "02")
+	data = append(data, sea2)
+	sea3 := TVInfo("Voyager", "03")
+	data = append(data, sea3)
+	sea4 := TVInfo("Voyager", "04")
+	data = append(data, sea4)
+	sea5 := TVInfo("Voyager", "05")
+	data = append(data, sea5)
+	sea6 := TVInfo("Voyager", "06")
+	data = append(data, sea6)
+	sea7 := TVInfo("Voyager", "07")
+	data = append(data, sea7)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_startrek_nextgeneration_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("NextGeneration", "01")
+	data = append(data, sea1)
+	sea2 := TVInfo("NextGeneration", "02")
+	data = append(data, sea2)
+	sea3 := TVInfo("NextGeneration", "03")
+	data = append(data, sea3)
+	sea4 := TVInfo("NextGeneration", "04")
+	data = append(data, sea4)
+	sea5 := TVInfo("NextGeneration", "05")
+	data = append(data, sea5)
+	sea6 := TVInfo("NextGeneration", "06")
+	data = append(data, sea6)
+	sea7 := TVInfo("NextGeneration", "07")
+	data = append(data, sea7)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+func tv_startrek_sttv_seasons(c echo.Context) error {
+	var data []TVSeasonStruct
+	sea1 := TVInfo("STTV", "01")
+	data = append(data, sea1)
+	sea2 := TVInfo("STTV", "02")
+	data = append(data, sea2)
+	sea3 := TVInfo("STTV", "03")
+	data = append(data, sea3)
+	return c.Render(http.StatusOK, "tv_tvshowsseasons", data)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 func tv_starwars(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_starwars", "WORKED")
