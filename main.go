@@ -495,10 +495,10 @@ func tv_action(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_action", "WORKED")
 }
 func tv_action_shogun_seasons(c echo.Context) error {
-	var data []TVSeasonStruct
-	sea1 := TVInfo("Shogun", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_seasons", data)
+	// var data []TVSeasonStruct
+	// sea1 := TVInfo("Shogun", "01")
+	// data = append(data, sea1)
+	return c.Render(http.StatusOK, "tv_seasons", "WORKED")
 }
 func tv_action_continental_seasons(c echo.Context) error {
 	var data []TVSeasonStruct
