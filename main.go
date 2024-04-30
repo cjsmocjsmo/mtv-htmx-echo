@@ -251,8 +251,9 @@ func MovInfo(cat string) []map[string]string {
 }
 
 func mov_action(c echo.Context) error {
-	movies := MovInfo("Action")
-	return c.Render(http.StatusOK, "mov_movie", movies)
+	// movies := MovInfo("Action")
+	// return c.Render(http.StatusOK, "mov_movie", movies)
+	return c.Render(http.StatusOK, "tv_seasons", "WORKED")
 }
 
 func mov_arnold(c echo.Context) error {
