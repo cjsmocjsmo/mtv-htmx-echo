@@ -252,7 +252,7 @@ func MovInfo(cat string) []map[string]string {
 
 func mov_action(c echo.Context) error {
 	movies := MovInfo("Action")
-	return c.Render(http.StatusOK, "mtv_season", movies)
+	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
 func mov_arnold(c echo.Context) error {
@@ -498,8 +498,7 @@ func tv_action_shogun_seasons(c echo.Context) error {
 	var data []TVSeasonStruct
 	sea1 := TVInfo("Shogun", "01")
 	data = append(data, sea1)
-	println(data)
-	return c.Render(http.StatusOK, "mtv_season", "WORKED")
+	return c.Render(http.StatusOK, "mtv_season", data)
 }
 func tv_action_continental_seasons(c echo.Context) error {
 	var data []TVSeasonStruct
