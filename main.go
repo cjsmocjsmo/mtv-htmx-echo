@@ -476,6 +476,10 @@ func TVInfo(cat string, sea string) []map[string]string {
 		}
 		// log.Printf("epiInfo: %v", epiInfo)
 		sea1EpiInfo = append(sea1EpiInfo, epiInfo)
+		season := map[string]string{
+			"season": sea,
+		}
+		sea1EpiInfo = append(sea1EpiInfo, season)
 
 	}
 
