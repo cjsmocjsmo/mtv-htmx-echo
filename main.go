@@ -119,7 +119,7 @@ func main() {
 	e.GET("/movxmen", mov_xmen)
 	e.GET("/tvshows", mtv_tvshows)
 	e.GET("/tvaction", tv_action)
-	e.GET("/shogun", tv_action_shogun_Seasons)
+	e.GET("/shogun", tv_action_shogun_Episodes)
 	e.GET("/continental", tv_action_continental_Seasons)
 	e.GET("/tvcomedy", tv_comedy)
 	e.GET("/fuubar", tv_comedy_fuubar_Seasons)
@@ -499,7 +499,7 @@ func TVInfo(cat string, sea string) []map[string]string {
 func tv_action(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_action", "WORKED")
 }
-func tv_action_shogun_Seasons(c echo.Context) error {
+func tv_action_shogun_Episodes(c echo.Context) error {
 	var data [][]map[string]string
 	sea1 := TVInfo("Shogun", "01")
 	data = append(data, sea1)
