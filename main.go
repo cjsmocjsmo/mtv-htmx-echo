@@ -503,13 +503,13 @@ func tv_action_shogun_Seasons(c echo.Context) error {
 	var data [][]map[string]string
 	sea1 := TVInfo("Shogun", "01")
 	data = append(data, sea1)
-	return c.Render(http.StatusOK, "mtv_Season", data)
+	return c.Render(http.StatusOK, "mtv_season", data)
 }
 func tv_action_continental_Seasons(c echo.Context) error {
 	var data [][]map[string]string
 	sea1 := TVInfo("TheContinental", "01")
 	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+	return c.Render(http.StatusOK, "mtv_season", data)
 }
 
 
