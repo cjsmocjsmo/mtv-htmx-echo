@@ -1,12 +1,10 @@
 {{ define "mtv_season" }}
     <h2>Seasons</h2>
-    <div></div>
+    <div>
         {{ range . }}
-            
             {{ range . }}
                 <button>{{.Episode}}</button>
             {{ end }}
-            
         {{ end }}
     </div>
 {{ end }}
