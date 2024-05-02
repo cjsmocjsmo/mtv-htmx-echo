@@ -505,7 +505,7 @@ func tv_action_shogun_seasons(c echo.Context) error {
     }
     defer db.Close()
 
-    rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Category = ? ORDER BY Season ASC", "Shogun")
+    rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Catagory = ? ORDER BY Season ASC", "Shogun")
     if err != nil {
         log.Printf("failed to execute query: %v", err)
         return err
