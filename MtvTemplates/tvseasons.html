@@ -1,17 +1,13 @@
 {{ define "tv_season" }}
-    <>
-        <h2>Seasons</h2>
-        <div class="seaDiv">
-        {{ range . }}
-            <div>
-                <button class="seaBtn"
-                    hx-trigger="click"
-                    hx-get="/tvshogunepi"
-                    hx-target=".epiDiv"
-                    hx-swap="innerHTML">{{ .Season}}</button>
-            </div>
-        {{ end }}
-        </div>
-        <div class="epiDiv"></div>
-    </>    
+<div class="seaDiv">
+    <h2>Seasons</h2>
+    {{ range . }}
+    <div>
+        <button class="seaBtn" hx-trigger="click" hx-get="/tvshogunepi" hx-target=".epiDiv" hx-swap="innerHTML">
+            {{ .Season}}
+        </button>
+    </div>
+    {{ end }}
+</div>
+<div class="epiDiv"></div>
 {{ end }}
