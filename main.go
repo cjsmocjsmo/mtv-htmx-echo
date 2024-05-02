@@ -527,6 +527,8 @@ func tv_action_shogun_seasons(c echo.Context) error {
         result = append(result, info)
     }
 
+	log.Printf("data: %v", result)
+
     if err := rows.Err(); err != nil {
         log.Printf("rows iteration error: %v", err)
         return err
