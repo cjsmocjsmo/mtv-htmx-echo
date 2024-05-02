@@ -165,6 +165,14 @@ img {
     margin-top: 1em;
 }
 
+.seaDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+}
+
 .seaBtn {
     margin: 1em;
     padding: 12px 24px;
@@ -173,7 +181,7 @@ img {
     border-width: 2px;
     border-radius: 12px;
     background-color: black;
-    color: green;
+    color: white;
 }
 
 
