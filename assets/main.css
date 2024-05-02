@@ -165,6 +165,15 @@ img {
     margin-top: 1em;
 }
 
-
+.seaBtn {
+    margin: 1em;
+    padding: 12px 24px;
+    border-style: solid;
+    border-color: purple;
+    border-width: 2px;
+    border-radius: 12px;
+    background-color: black;
+    color: green;
+}
 
 
