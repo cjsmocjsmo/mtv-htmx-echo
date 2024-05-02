@@ -1,9 +1,11 @@
 {{ define "tv_season" }}
     <h2>Seasons</h2>
+    <div>
     {{ range . }}
-        {{ .Catagory}}
-        {{ .Season}}
-
+        <div>
+            <button>{{ .Catagory}}</button>
+            <button>{{ .Season}}</button>
+        </div>
     {{ end }}
-        
+    </div>    
 {{ end }}
