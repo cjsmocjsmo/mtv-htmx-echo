@@ -1,5 +1,9 @@
 {{ define "tv_season" }}
     <h2>Seasons</h2>
-    {{ . }}
+    {{ range . }}
+        {{ .Catagory}}
+        {{ .Season}}
+
+    {{ end }}
         
 {{ end }}
