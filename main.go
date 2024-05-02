@@ -411,7 +411,7 @@ func mov_superheros(c echo.Context) error {
 }
 
 func mov_tinkerbell(c echo.Context) error {
-	movies := MovInfo("Tinkerbell")
+	movies := MovInfo("TinkerBell")
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
@@ -444,7 +444,7 @@ func mov_xmen(c echo.Context) error {
 
 
 
-func TVInfo(cat string, sea string) []map[string]string {
+func TVEpisodeInfo(cat string, sea string) []map[string]string {
 	dbPath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbPath)
 	if err != nil {
@@ -474,19 +474,9 @@ func TVInfo(cat string, sea string) []map[string]string {
 			"Path"   : tv.Path,
 			"Idx"    : tv.Idx,
 		}
-		// log.Printf("epiInfo: %v", epiInfo)
 		sea1EpiInfo = append(sea1EpiInfo, epiInfo)
-		// Season := map[string]string{
-		// 	"Season": sea,
-		// }
-		// sea1EpiInfo = append(sea1EpiInfo, Season)
 
 	}
-
-	// data := TVSeasonStruct{
-	// 	Season: sea,
-	// 	Episodes: sea1EpiInfo,
-	// }
 	log.Printf("data: %v", sea1EpiInfo)
 
 	if err := rows.Err(); err != nil {
@@ -499,15 +489,53 @@ func TVInfo(cat string, sea string) []map[string]string {
 func tv_action(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_action", "WORKED")
 }
+func tv_action_shogun_seasons(c echo.Context) error {
+    dbPath := os.Getenv("MTV_DB_PATH")
+    db, err := sql.Open("sqlite3", dbPath)
+    if err != nil {
+        log.Printf("failed to open database: %v", err)
+        return err
+    }
+    defer db.Close()
+
+    rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Category = ? ORDER BY Season ASC", "Shogun")
+    if err != nil {
+        log.Printf("failed to execute query: %v", err)
+        return err
+    }
+    defer rows.Close()
+
+    var result []map[string]string
+    for rows.Next() {
+        var season string
+        if err := rows.Scan(&season); err != nil {
+            log.Printf("failed to scan row: %v", err)
+            return err
+        }
+		info := map[string]string{
+			"Catagory": "Shogun",
+			"Season": season,
+
+		}
+        result = append(result, info)
+    }
+
+    if err := rows.Err(); err != nil {
+        log.Printf("rows iteration error: %v", err)
+        return err
+    }
+
+    return c.Render(http.StatusOK, "tv_season" , result)
+}
 func tv_action_shogun_Episodes(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Shogun", "01")
+	sea1 := TVEpisodeInfo("Shogun", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "mtv_episode", data)
 }
 func tv_action_continental_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("TheContinental", "01")
+	sea1 := TVEpisodeInfo("TheContinental", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "mtv_season", data)
 }
@@ -518,7 +546,7 @@ func tv_comedy(c echo.Context) error {
 }
 func tv_comedy_fuubar_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("FuuBar", "01")
+	sea1 := TVEpisodeInfo("FuuBar", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
@@ -529,21 +557,21 @@ func tv_fantasy(c echo.Context) error {
 }
 func tv_fantasy_wheeloftime_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("WheelOfTime", "01")
+	sea1 := TVEpisodeInfo("WheelOfTime", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("WheelOfTime", "02")
+	sea2 := TVEpisodeInfo("WheelOfTime", "02")
 	data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_fantasy_TheLordOfTheRingsTheRingsOfPower_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("RingsOfPower", "01")
+	sea1 := TVEpisodeInfo("RingsOfPower", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_fantasy_houseofthedragon_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("HouseOfTheDragon", "01")
+	sea1 := TVEpisodeInfo("HouseOfTheDragon", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
@@ -554,107 +582,107 @@ func tv_startrek(c echo.Context) error {
 }
 func tv_startrek_strangenewworlds_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("StrangeNewWorlds", "01")
+	sea1 := TVEpisodeInfo("StrangeNewWorlds", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("StrangeNewWorlds", "02")
+	sea2 := TVEpisodeInfo("StrangeNewWorlds", "02")
 	data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_startrek_discovery_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Discovery", "01")
+	sea1 := TVEpisodeInfo("Discovery", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("Discovery", "02")
+	sea2 := TVEpisodeInfo("Discovery", "02")
 	data = append(data, sea2)
-	sea3 := TVInfo("Discovery", "03")
+	sea3 := TVEpisodeInfo("Discovery", "03")
 	data = append(data, sea3)
-	sea4 := TVInfo("Discovery", "04")
+	sea4 := TVEpisodeInfo("Discovery", "04")
 	data = append(data, sea4)
-	sea5 := TVInfo("Discovery", "05")
+	sea5 := TVEpisodeInfo("Discovery", "05")
 	data = append(data, sea5)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_startrek_picard_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Picard", "01")
+	sea1 := TVEpisodeInfo("Picard", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("Picard", "02")
+	sea2 := TVEpisodeInfo("Picard", "02")
 	data = append(data, sea2)
-	sea3 := TVInfo("Picard", "03")
+	sea3 := TVEpisodeInfo("Picard", "03")
 	data = append(data, sea3)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_startrek_lowerdecks_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("LowerDecks", "01")
+	sea1 := TVEpisodeInfo("LowerDecks", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("LowerDecks", "02")
+	sea2 := TVEpisodeInfo("LowerDecks", "02")
 	data = append(data, sea2)
-	sea3 := TVInfo("LowerDecks", "03")
+	sea3 := TVEpisodeInfo("LowerDecks", "03")
 	data = append(data, sea3)
-	sea4 := TVInfo("LowerDecks", "04")
+	sea4 := TVEpisodeInfo("LowerDecks", "04")
 	data = append(data, sea4)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_startrek_prodigy_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Prodigy", "01")
+	sea1 := TVEpisodeInfo("Prodigy", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_startrek_enterprise_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Enterprise", "01")
+	sea1 := TVEpisodeInfo("Enterprise", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("Enterprise", "02")
+	sea2 := TVEpisodeInfo("Enterprise", "02")
 	data = append(data, sea2)
-	sea3 := TVInfo("Enterprise", "03")
+	sea3 := TVEpisodeInfo("Enterprise", "03")
 	data = append(data, sea3)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_startrek_voyager_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Voyager", "01")
+	sea1 := TVEpisodeInfo("Voyager", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("Voyager", "02")
+	sea2 := TVEpisodeInfo("Voyager", "02")
 	data = append(data, sea2)
-	sea3 := TVInfo("Voyager", "03")
+	sea3 := TVEpisodeInfo("Voyager", "03")
 	data = append(data, sea3)
-	sea4 := TVInfo("Voyager", "04")
+	sea4 := TVEpisodeInfo("Voyager", "04")
 	data = append(data, sea4)
-	sea5 := TVInfo("Voyager", "05")
+	sea5 := TVEpisodeInfo("Voyager", "05")
 	data = append(data, sea5)
-	sea6 := TVInfo("Voyager", "06")
+	sea6 := TVEpisodeInfo("Voyager", "06")
 	data = append(data, sea6)
-	sea7 := TVInfo("Voyager", "07")
+	sea7 := TVEpisodeInfo("Voyager", "07")
 	data = append(data, sea7)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_startrek_nextgeneration_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("NextGeneration", "01")
+	sea1 := TVEpisodeInfo("NextGeneration", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("NextGeneration", "02")
+	sea2 := TVEpisodeInfo("NextGeneration", "02")
 	data = append(data, sea2)
-	sea3 := TVInfo("NextGeneration", "03")
+	sea3 := TVEpisodeInfo("NextGeneration", "03")
 	data = append(data, sea3)
-	sea4 := TVInfo("NextGeneration", "04")
+	sea4 := TVEpisodeInfo("NextGeneration", "04")
 	data = append(data, sea4)
-	sea5 := TVInfo("NextGeneration", "05")
+	sea5 := TVEpisodeInfo("NextGeneration", "05")
 	data = append(data, sea5)
-	sea6 := TVInfo("NextGeneration", "06")
+	sea6 := TVEpisodeInfo("NextGeneration", "06")
 	data = append(data, sea6)
-	sea7 := TVInfo("NextGeneration", "07")
+	sea7 := TVEpisodeInfo("NextGeneration", "07")
 	data = append(data, sea7)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_startrek_sttv_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("STTV", "01")
+	sea1 := TVEpisodeInfo("STTV", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("STTV", "02")
+	sea2 := TVEpisodeInfo("STTV", "02")
 	data = append(data, sea2)
-	sea3 := TVInfo("STTV", "03")
+	sea3 := TVEpisodeInfo("STTV", "03")
 	data = append(data, sea3)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
@@ -665,59 +693,59 @@ func tv_starwars(c echo.Context) error {
 }
 func tv_starwars_ahsoka_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Ahsoka", "01")
+	sea1 := TVEpisodeInfo("Ahsoka", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_starwars_andor_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Andor", "01")
+	sea1 := TVEpisodeInfo("Andor", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_starwars_badbatch_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("BadBatch", "01")
+	sea1 := TVEpisodeInfo("BadBatch", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("BadBatch", "02")
+	sea2 := TVEpisodeInfo("BadBatch", "02")
 	data = append(data, sea2)
-	sea3 := TVInfo("BadBatch", "03")
+	sea3 := TVEpisodeInfo("BadBatch", "03")
 	data = append(data, sea3)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_starwars_bobafett_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("BobaFett", "01")
+	sea1 := TVEpisodeInfo("BobaFett", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_starwars_mandalorian_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Mandalorian", "01")
+	sea1 := TVEpisodeInfo("Mandalorian", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("Mandalorian", "02")
+	sea2 := TVEpisodeInfo("Mandalorian", "02")
 	data = append(data, sea2)
-	sea3 := TVInfo("Mandalorian", "03")
+	sea3 := TVEpisodeInfo("Mandalorian", "03")
 	data = append(data, sea3)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_starwars_obiwan_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("ObiWan", "01")
+	sea1 := TVEpisodeInfo("ObiWan", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_starwars_talesofthejedi_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("TalesOfTheJedi", "01")
+	sea1 := TVEpisodeInfo("TalesOfTheJedi", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_starwars_visions_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Visions", "01")
+	sea1 := TVEpisodeInfo("Visions", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("Visions", "02")
+	sea2 := TVEpisodeInfo("Visions", "02")
 	data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
@@ -728,107 +756,107 @@ func tv_scifi(c echo.Context) error {
 }
 func tv_scifi_threebodyproblem_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("ThreeBodyProblem", "01")
+	sea1 := TVEpisodeInfo("ThreeBodyProblem", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_fallout_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Fallout", "01")
+	sea1 := TVEpisodeInfo("Fallout", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_alteredcarbon_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("AlteredCarbon", "01")
+	sea1 := TVEpisodeInfo("AlteredCarbon", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("AlteredCarbon", "02")
+	sea2 := TVEpisodeInfo("AlteredCarbon", "02")
 	data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_cowboybebop_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("CowboyBebop", "01")
+	sea1 := TVEpisodeInfo("CowboyBebop", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_forallmankind_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("ForAllMankind", "01")
+	sea1 := TVEpisodeInfo("ForAllMankind", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("ForAllMankind", "02")
+	sea2 := TVEpisodeInfo("ForAllMankind", "02")
 	data = append(data, sea2)
-	sea3 := TVInfo("ForAllMankind", "03")
+	sea3 := TVEpisodeInfo("ForAllMankind", "03")
 	data = append(data, sea3)
-	sea4 := TVInfo("ForAllMankind", "04")
+	sea4 := TVEpisodeInfo("ForAllMankind", "04")
 	data = append(data, sea4)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_foundation_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Foundation", "01")
+	sea1 := TVEpisodeInfo("Foundation", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("Foundation", "02")
+	sea2 := TVEpisodeInfo("Foundation", "02")
 	data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_halo_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Halo", "01")
+	sea1 := TVEpisodeInfo("Halo", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("Halo", "02")
+	sea2 := TVEpisodeInfo("Halo", "02")
 	data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_thelastofus_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("TheLastOfUs", "01")
+	sea1 := TVEpisodeInfo("TheLastOfUs", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_lostinspace_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("LostInSpace", "01")
+	sea1 := TVEpisodeInfo("LostInSpace", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("LostInSpace", "02")
+	sea2 := TVEpisodeInfo("LostInSpace", "02")
 	data = append(data, sea2)
-	sea3 := TVInfo("LostInSpace", "03")
+	sea3 := TVEpisodeInfo("LostInSpace", "03")
 	data = append(data, sea3)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_monarchlegacyofmonsters_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("MonarchLegacyOfMonsters", "01")
+	sea1 := TVEpisodeInfo("MonarchLegacyOfMonsters", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_nightsky_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("NightSky", "01")
+	sea1 := TVEpisodeInfo("NightSky", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_orville_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Orville", "01")
+	sea1 := TVEpisodeInfo("Orville", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("Orville", "02")
+	sea2 := TVEpisodeInfo("Orville", "02")
 	data = append(data, sea2)
-	sea3 := TVInfo("Orville", "03")
+	sea3 := TVEpisodeInfo("Orville", "03")
 	data = append(data, sea3)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_raisedbywolves_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("RaisedByWolves", "01")
+	sea1 := TVEpisodeInfo("RaisedByWolves", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("RaisedByWolves", "02")
+	sea2 := TVEpisodeInfo("RaisedByWolves", "02")
 	data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_scifi_silo_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Silo", "01")
+	sea1 := TVEpisodeInfo("Silo", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
@@ -838,9 +866,9 @@ func tv_science(c echo.Context) error {
 }
 func tv_science_prehistoricplanet_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("PrehistoricPlanet", "01")
+	sea1 := TVEpisodeInfo("PrehistoricPlanet", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("PrehistoricPlanet", "02")
+	sea2 := TVEpisodeInfo("PrehistoricPlanet", "02")
 	data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
@@ -851,67 +879,67 @@ func tv_mcu(c echo.Context) error {
 }
 func tv_mcu_falconwintersoldier_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("FalconWinterSoldier", "01")
+	sea1 := TVEpisodeInfo("FalconWinterSoldier", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_mcu_iamgroot_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("IAmGroot", "01")
+	sea1 := TVEpisodeInfo("IAmGroot", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("IAmGroot", "02")
+	sea2 := TVEpisodeInfo("IAmGroot", "02")
 	data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_mcu_loki_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Loki", "01")
+	sea1 := TVEpisodeInfo("Loki", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("Loki", "02")
+	sea2 := TVEpisodeInfo("Loki", "02")
 	data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_mcu_moonknight_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("MoonKnight", "01")
+	sea1 := TVEpisodeInfo("MoonKnight", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_mcu_msMarvel_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("MsMarvel", "01")
+	sea1 := TVEpisodeInfo("MsMarvel", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_mcu_shehulk_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("SheHulk", "01")
+	sea1 := TVEpisodeInfo("SheHulk", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_mcu_wandavision_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("WandaVision", "01")
+	sea1 := TVEpisodeInfo("WandaVision", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_mcu_whatif_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("WhatIf", "01")
+	sea1 := TVEpisodeInfo("WhatIf", "01")
 	data = append(data, sea1)
-	sea2 := TVInfo("WhatIf", "02")
+	sea2 := TVEpisodeInfo("WhatIf", "02")
 	data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_mcu_hawkeye_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("Hawkeye", "01")
+	sea1 := TVEpisodeInfo("Hawkeye", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 func tv_mcu_secretinvasion_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("SecretInvasion", "01")
+	sea1 := TVEpisodeInfo("SecretInvasion", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
@@ -922,7 +950,7 @@ func tv_western(c echo.Context) error {
 }
 func tv_western_1923_Seasons(c echo.Context) error {
 	var data [][]map[string]string
-	sea1 := TVInfo("1923", "01")
+	sea1 := TVEpisodeInfo("1923", "01")
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
