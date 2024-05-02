@@ -88,6 +88,7 @@ func main() {
 	e.GET("/movcharliebrown", mov_charliebrown)
 	e.GET("/movchucknorris", mov_chucknorris)
 	e.GET("/movcomedy", mov_comedy)
+	e.GET("/movcostner", mov_costner)
 	e.GET("/movdocumentary", mov_documentary)
 	e.GET("/movdrama", mov_drama)
 	e.GET("/movfantasy", mov_fantasy)
@@ -119,7 +120,8 @@ func main() {
 	e.GET("/movxmen", mov_xmen)
 	e.GET("/tvshows", mtv_tvshows)
 	e.GET("/tvaction", tv_action)
-	e.GET("/shogun", tv_action_shogun_Episodes)
+	e.GET("/shogunsea", tv_action_shogun_seasons)
+	e.GET("/shogunepi", tv_action_shogun_episodes)
 	e.GET("/continental", tv_action_continental_Seasons)
 	e.GET("/tvcomedy", tv_comedy)
 	e.GET("/fuubar", tv_comedy_fuubar_Seasons)
@@ -292,6 +294,11 @@ func mov_chucknorris(c echo.Context) error {
 
 func mov_comedy(c echo.Context) error {
 	movies := MovInfo("Comedy")
+	return c.Render(http.StatusOK, "mov_movie", movies)
+}
+
+func mov_costner(c echo.Context) error {
+	movies := MovInfo("Costner")
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
@@ -527,7 +534,7 @@ func tv_action_shogun_seasons(c echo.Context) error {
 
     return c.Render(http.StatusOK, "tv_season" , result)
 }
-func tv_action_shogun_Episodes(c echo.Context) error {
+func tv_action_shogun_episodes(c echo.Context) error {
 	var data [][]map[string]string
 	sea1 := TVEpisodeInfo("Shogun", "01")
 	data = append(data, sea1)
