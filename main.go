@@ -532,7 +532,7 @@ func tv_action_shogun_seasons(c echo.Context) error {
         return err
     }
 
-    return c.Render(http.StatusOK, "tv_season" , result)
+    return c.Render(http.StatusOK, "mtv_season" , result)
 }
 func tv_action_shogun_episodes(c echo.Context) error {
 	var data [][]map[string]string
