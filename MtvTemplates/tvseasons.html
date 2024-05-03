@@ -3,11 +3,11 @@
     <h2>Seasons</h2>
     {{ range . }}
     <div class="seaDiv">
-        <button class="seaBtn" hx-trigger="click" hx-get="/tvshogunepi" hx-target=".epiDiv" hx-swap="outerHTML">
+        <button class="seaBtn" hx-trigger="click" hx-get="/tvshogunepi" hx-target="#epiDiv" hx-swap="innerHTML">
             {{ .Season}}
         </button>
     </div>
     {{ end }}
 </div>
-<div class="epiDiv"></div>
+<div id="epiDiv"></div>
 {{ end }}
