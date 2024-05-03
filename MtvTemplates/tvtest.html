@@ -1,12 +1,11 @@
 {{ define "tv_test" }}
-    
-        {{ .Cat}}
-        {{ .Sea }}
-
-            {{ range .Epi }}
-            <div>
-                <p>{{ .Episode }}</p>
+    <div class="adminDiv">
+        <h1>{{ .Cat }}</h1>
+        <h2>Season: {{ .Sea }}</h2>
+            <div class="epiDiv">
+                {{ range .Epi }}
+                    <button class="epiBtn">{{ .Episode }}</button>
+                {{ end }}
             </div>
-            {{ end }}
-    
+    </div>
 {{ end }}
