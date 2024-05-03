@@ -540,6 +540,7 @@ func tv_action_shogun_episodes(c echo.Context) error {
 	var data [][]map[string]string
 	sea1 := TVEpisodeInfo("Shogun", "01")
 	data = append(data, sea1)
+	log.Printf("data: %v", data)
 	return c.Render(http.StatusOK, "tv_episode", data)
 }
 func tv_action_continental_Seasons(c echo.Context) error {
