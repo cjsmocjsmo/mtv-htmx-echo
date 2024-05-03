@@ -1,10 +1,10 @@
 {{ define "tv_episode" }}
     <h2>Episodes</h2>
         {{ range . }}
-            <div>
+            <div class="epiDiv">
                 {{ range . }}
                 <div>
-                    <button>{{.Episode}}</button>
+                    <button class="epiBtn">{{.Episode}}</button>
                 </div>
                 {{ end }}
             </div>
