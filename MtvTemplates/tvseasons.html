@@ -1,7 +1,7 @@
 {{ define "tv_season" }}
 <div>
     <h2>Seasons</h2>
-    <div class="seaDiv"></div>
+    <div class="seaDiv">
     {{ range . }}
         <button class="seaBtn" hx-trigger="click" hx-get="/{{ .Catagory }}epi" hx-target="#epiMainDiv" hx-swap="innerHTML">
             {{ .Season}}
