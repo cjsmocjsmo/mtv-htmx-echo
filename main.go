@@ -187,7 +187,7 @@ func main() {
 	e.GET("/hawkeye", tv_mcu_hawkeye_Seasons)
 	e.GET("/secretInvasion", tv_mcu_secretinvasion_Seasons)
 	e.GET("/tvwestern", tv_western)
-	e.GET("/1923", tv_western_1923_Seasons)
+	e.GET("/1923", tv_western_1923_seasons)
 	e.GET("/admin", mtv_admin)
 	e.GET("/playmovie/:MovId", playmovie)
 	e.Static("/assets", "assets")
@@ -1039,9 +1039,46 @@ func tv_mcu_secretinvasion_Seasons(c echo.Context) error {
 func tv_western(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_western", "WORKED")
 }
-func tv_western_1923_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("1923", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_western_1923_seasons(c echo.Context) error {
+	dbPath := os.Getenv("MTV_DB_PATH")
+	db, err := sql.Open("sqlite3", dbPath)
+	if err != nil {
+		log.Printf("failed to open database: %v", err)
+	}
+	defer db.Close()
+
+	rows, err := db.Query("SELECT TvId, Size, Catagory, Name, Season, Episode, Path, Idx FROM tvshows WHERE Catagory = ? AND Season = ? ORDER BY Episode ASC", "HFord1923", "01")
+	if err != nil {
+		log.Printf("failed to execute query: %v", err)
+	}
+	defer rows.Close()
+
+	var sea1EpiInfo []TvEpiStruct
+	for rows.Next() {
+		var tv TvEpiStruct
+		if err := rows.Scan(&tv.TvId, &tv.Size, &tv.Catagory, &tv.Name, &tv.Season, &tv.Episode, &tv.Path, &tv.Idx); err != nil {
+			log.Printf("failed to scan row: %v", err)
+		}
+		// epiInfo := TvEpiStruct{
+		// 	TvId:     tv.TvId,
+		// 	Size:     tv.Size,
+		// 	Catagory: tv.Catagory,
+		// 	Name:     tv.Name,
+		// 	Season:   tv.Season,
+		// 	Episode:  tv.Episode,
+		// 	Path:     tv.Path,
+		// 	Idx:      tv.Idx,
+		// }
+		sea1EpiInfo = append(sea1EpiInfo, tv)
+
+	}
+	log.Printf("data: %v", sea1EpiInfo)
+
+	if err := rows.Err(); err != nil {
+		log.Printf("rows iteration error: %v", err)
+	}
+
+
+
+	return c.Render(http.StatusOK, "tv_test", sea1EpiInfo)
 }
