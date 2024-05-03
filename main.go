@@ -509,6 +509,45 @@ func mov_xmen(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
+func TVSeasonInfo2(cat string, sea string) TVSeasonStruct {
+	dbPath := os.Getenv("MTV_DB_PATH")
+	db, err := sql.Open("sqlite3", dbPath)
+	if err != nil {
+		log.Printf("failed to open database: %v", err)
+	}
+	defer db.Close()
+
+	rows, err := db.Query("SELECT TvId, Size, Catagory, Name, Season, Episode, Path, Idx FROM tvshows WHERE Catagory = ? AND Season = ? ORDER BY Episode ASC", cat, sea)
+	if err != nil {
+		log.Printf("failed to execute query: %v", err)
+	}
+	defer rows.Close()
+
+	var sea1EpiInfo []TvEpiStruct
+	for rows.Next() {
+		var tv TvEpiStruct
+		if err := rows.Scan(&tv.TvId, &tv.Size, &tv.Catagory, &tv.Name, &tv.Season, &tv.Episode, &tv.Path, &tv.Idx); err != nil {
+			log.Printf("failed to scan row: %v", err)
+		}
+		sea1EpiInfo = append(sea1EpiInfo, tv)
+
+	}
+	
+
+	if err := rows.Err(); err != nil {
+		log.Printf("rows iteration error: %v", err)
+	}
+
+	seaInfo := TVSeasonStruct{
+		Cat: "1923",
+		Sea: "01",
+		Epi: sea1EpiInfo,
+	}
+	log.Printf("data: %v", seaInfo)
+
+	return seaInfo
+}
+
 func TVSeasonInfo(cat string) []map[string]string {
 	dbPath := os.Getenv("MTV_DB_PATH")
 	db, err := sql.Open("sqlite3", dbPath)
@@ -591,8 +630,8 @@ func tv_action(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_action", "WORKED")
 }
 func tv_action_shogun_seasons(c echo.Context) error {
-	result := TVSeasonInfo("Shogun")
-	return c.Render(http.StatusOK, "tv_season", result)
+	result := TVSeasonInfo2("Shogun", "01")
+	return c.Render(http.StatusOK, "tv_test", result)
 }
 func tv_action_shogun_episodes(c echo.Context) error {
 	season := c.Param("season")
