@@ -122,7 +122,8 @@ func main() {
 	e.GET("/tvaction", tv_action)
 	e.GET("/shogunsea", tv_action_shogun_seasons)
 	e.GET("/shogunepi", tv_action_shogun_episodes)
-	e.GET("/continental", tv_action_continental_Seasons)
+	e.GET("/continentalsea", tv_action_continental_seasons)
+	e.GET("/continentalepi", tv_action_continental_episodes)
 	e.GET("/tvcomedy", tv_comedy)
 	e.GET("/fuubar", tv_comedy_fuubar_Seasons)
 	e.GET("/tvfantasy", tv_fantasy)
@@ -531,44 +532,7 @@ func tv_action(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_action", "WORKED")
 }
 func tv_action_shogun_seasons(c echo.Context) error {
-    // dbPath := os.Getenv("MTV_DB_PATH")
-    // db, err := sql.Open("sqlite3", dbPath)
-    // if err != nil {
-    //     log.Printf("failed to open database: %v", err)
-    //     return err
-    // }
-    // defer db.Close()
-
-    // rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Catagory = ? ORDER BY Season ASC", "Shogun")
-    // if err != nil {
-    //     log.Printf("failed to execute query: %v", err)
-    //     return err
-    // }
-    // defer rows.Close()
-
-    // var result []map[string]string
-    // for rows.Next() {
-    //     var season string
-    //     if err := rows.Scan(&season); err != nil {
-    //         log.Printf("failed to scan row: %v", err)
-    //         return err
-    //     }
-	// 	info := map[string]string{
-	// 		"Catagory": "Shogun",
-	// 		"Season": season,
-
-	// 	}
-    //     result = append(result, info)
-    // }
-
-	// log.Printf("data: %v", result)
-
-    // if err := rows.Err(); err != nil {
-    //     log.Printf("rows iteration error: %v", err)
-    //     return err
-    // }
 	result := TVSeasonInfo("Shogun")
-
     return c.Render(http.StatusOK, "tv_season" , result)
 }
 func tv_action_shogun_episodes(c echo.Context) error {
@@ -578,7 +542,11 @@ func tv_action_shogun_episodes(c echo.Context) error {
 	log.Printf("data: %v", data)
 	return c.Render(http.StatusOK, "tv_episode", data)
 }
-func tv_action_continental_Seasons(c echo.Context) error {
+func tv_action_continental_seasons(c echo.Context) error {
+	result := TVSeasonInfo("TheContinental")
+	return c.Render(http.StatusOK, "tv_season", result)
+}
+func tv_action_continental_episodes(c echo.Context) error {
 	var data [][]map[string]string
 	sea1 := TVEpisodeInfo("TheContinental", "01")
 	data = append(data, sea1)
