@@ -595,6 +595,7 @@ func tv_action_shogun_seasons(c echo.Context) error {
 }
 func tv_action_shogun_episodes(c echo.Context) error {
 	season := c.Param("season")
+	log.Printf("season: %s", season)
 	var data [][]map[string]string
 	sea1 := TVEpisodeInfo("Shogun", season)
 	data = append(data, sea1)
