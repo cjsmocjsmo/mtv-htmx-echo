@@ -1,4 +1,5 @@
 {{ define "tv_test" }}
+{{ range . }}
     {{ .Catagory}}
     {{ .Season }}
 
@@ -7,4 +8,5 @@
         <p>{{ .Episode }}</p>
     </div>
     {{ end }}
+{{ end }}
 {{ end }}

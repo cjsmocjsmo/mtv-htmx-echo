@@ -1073,7 +1073,7 @@ func tv_western_1923_seasons(c echo.Context) error {
 		sea1EpiInfo = append(sea1EpiInfo, tv)
 
 	}
-	log.Printf("data: %v", sea1EpiInfo)
+	
 
 	if err := rows.Err(); err != nil {
 		log.Printf("rows iteration error: %v", err)
@@ -1084,7 +1084,7 @@ func tv_western_1923_seasons(c echo.Context) error {
 		Season: "01",
 		Episodes: sea1EpiInfo,
 	}
-
+	log.Printf("data: %v", seaInfo)
 
 	return c.Render(http.StatusOK, "tv_test", seaInfo)
 }
