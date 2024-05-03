@@ -237,12 +237,31 @@ func admin_stats() map[string]string {
 		log.Printf("failed to execute query: %v", err)
 	}
 
+	var movTotalSize int64
+	err = db.QueryRow("SELECT SUM(Size) FROM movies").Scan(&movTotalSize)
+	if err != nil {
+		log.Printf("failed to execute query: %v", err)
+	}
+
+	var tvTotalSize int64
+	err = db.QueryRow("SELECT SUM(Size) FROM movies").Scan(&tvTotalSize)
+	if err != nil {
+		log.Printf("failed to execute query: %v", err)
+	}
+
+	movTotalSizeGB := float64(movTotalSize) / (1024 * 1024 * 1024)
+	tvTotalSizeGB := float64(tvTotalSize) / (1024 * 1024 * 1024)
+
 	movCountStr := strconv.Itoa(mov_count)
 	tvCountStr := strconv.Itoa(tv_count)
+	movTotalSizeGBStr := fmt.Sprintf("%.2f", movTotalSizeGB)
+	tvTotalSizeGBStr := fmt.Sprintf("%.2f", tvTotalSizeGB)
 
     data := map[string]string{
 		"Mov_count": movCountStr,
 		"Tv_count": tvCountStr,
+		"MovTotalSize": movTotalSizeGBStr,
+		"TvTotalSize": tvTotalSizeGBStr,
 	}
 
 	return data
