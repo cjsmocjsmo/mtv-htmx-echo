@@ -547,7 +547,7 @@ func tv_action_continental_episodes(c echo.Context) error {
 	var data [][]map[string]string
 	sea1 := TVEpisodeInfo("TheContinental", "01")
 	data = append(data, sea1)
-	return c.Render(http.StatusOK, "mtv_season", data)
+	return c.Render(http.StatusOK, "tv_episode", data)
 }
 
 func tv_comedy(c echo.Context) error {
