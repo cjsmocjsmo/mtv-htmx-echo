@@ -43,9 +43,9 @@ type TvEpiStruct struct {
 }
 
 type TVSeasonStruct struct {
-	Catagory string
-	Season string
-	Episodes []TvEpiStruct
+	Cat string
+	Sea string
+	Epi []TvEpiStruct
 }
 
 func checkDBExists() {
@@ -1080,9 +1080,9 @@ func tv_western_1923_seasons(c echo.Context) error {
 	}
 
 	seaInfo := TVSeasonStruct{
-		Catagory: "1923",
-		Season: "01",
-		Episodes: sea1EpiInfo,
+		Cat: "1923",
+		Sea: "01",
+		Epi: sea1EpiInfo,
 	}
 	log.Printf("data: %v", seaInfo)
 

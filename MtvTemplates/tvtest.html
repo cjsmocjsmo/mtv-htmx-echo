@@ -1,12 +1,12 @@
 {{ define "tv_test" }}
-{{ range . }}
-    {{ .Catagory}}
-    {{ .Season }}
+    {{ range . }}
+        {{ .Cat}}
+        {{ .Sea }}
 
-    {{ range .}}
-    <div>
-        <p>{{ .Episode }}</p>
-    </div>
+            {{ range .Epi }}
+            <div>
+                <p>{{ .Episode }}</p>
+            </div>
+            {{ end }}
     {{ end }}
-{{ end }}
 {{ end }}
