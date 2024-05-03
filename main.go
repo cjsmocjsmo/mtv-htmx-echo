@@ -448,7 +448,41 @@ func mov_xmen(c echo.Context) error {
 }
 
 
+func TVSeasonInfo(cat string) []map[string]string {
+	dbPath := os.Getenv("MTV_DB_PATH")
+    db, err := sql.Open("sqlite3", dbPath)
+    if err != nil {
+        log.Printf("failed to open database: %v", err)
+    }
+    defer db.Close()
 
+    rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Catagory = ? ORDER BY Season ASC", "Shogun")
+    if err != nil {
+        log.Printf("failed to execute query: %v", err)
+    }
+    defer rows.Close()
+
+    var result []map[string]string
+    for rows.Next() {
+        var season string
+        if err := rows.Scan(&season); err != nil {
+            log.Printf("failed to scan row: %v", err)
+        }
+		info := map[string]string{
+			"Catagory": "Shogun",
+			"Season": season,
+
+		}
+        result = append(result, info)
+    }
+
+	log.Printf("data: %v", result)
+
+    if err := rows.Err(); err != nil {
+        log.Printf("rows iteration error: %v", err)
+    }
+	return result
+}
 
 
 func TVEpisodeInfo(cat string, sea string) []map[string]string {
@@ -497,42 +531,43 @@ func tv_action(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_action", "WORKED")
 }
 func tv_action_shogun_seasons(c echo.Context) error {
-    dbPath := os.Getenv("MTV_DB_PATH")
-    db, err := sql.Open("sqlite3", dbPath)
-    if err != nil {
-        log.Printf("failed to open database: %v", err)
-        return err
-    }
-    defer db.Close()
+    // dbPath := os.Getenv("MTV_DB_PATH")
+    // db, err := sql.Open("sqlite3", dbPath)
+    // if err != nil {
+    //     log.Printf("failed to open database: %v", err)
+    //     return err
+    // }
+    // defer db.Close()
 
-    rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Catagory = ? ORDER BY Season ASC", "Shogun")
-    if err != nil {
-        log.Printf("failed to execute query: %v", err)
-        return err
-    }
-    defer rows.Close()
+    // rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Catagory = ? ORDER BY Season ASC", "Shogun")
+    // if err != nil {
+    //     log.Printf("failed to execute query: %v", err)
+    //     return err
+    // }
+    // defer rows.Close()
 
-    var result []map[string]string
-    for rows.Next() {
-        var season string
-        if err := rows.Scan(&season); err != nil {
-            log.Printf("failed to scan row: %v", err)
-            return err
-        }
-		info := map[string]string{
-			"Catagory": "Shogun",
-			"Season": season,
+    // var result []map[string]string
+    // for rows.Next() {
+    //     var season string
+    //     if err := rows.Scan(&season); err != nil {
+    //         log.Printf("failed to scan row: %v", err)
+    //         return err
+    //     }
+	// 	info := map[string]string{
+	// 		"Catagory": "Shogun",
+	// 		"Season": season,
 
-		}
-        result = append(result, info)
-    }
+	// 	}
+    //     result = append(result, info)
+    // }
 
-	log.Printf("data: %v", result)
+	// log.Printf("data: %v", result)
 
-    if err := rows.Err(); err != nil {
-        log.Printf("rows iteration error: %v", err)
-        return err
-    }
+    // if err := rows.Err(); err != nil {
+    //     log.Printf("rows iteration error: %v", err)
+    //     return err
+    // }
+	result := TVSeasonInfo("Shogun")
 
     return c.Render(http.StatusOK, "tv_season" , result)
 }
