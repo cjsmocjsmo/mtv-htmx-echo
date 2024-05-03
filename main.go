@@ -3,15 +3,16 @@ package main
 import (
 	"database/sql"
 	"fmt"
-	"github.com/joho/godotenv"
-	"github.com/labstack/echo/v4"
-	"github.com/labstack/echo/v4/middleware"
-	_ "github.com/mattn/go-sqlite3"
 	"html/template"
 	"io"
 	"log"
 	"net/http"
 	"os"
+
+	"github.com/joho/godotenv"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type Template struct {
@@ -120,8 +121,8 @@ func main() {
 	e.GET("/movxmen", mov_xmen)
 	e.GET("/tvshows", mtv_tvshows)
 	e.GET("/tvaction", tv_action)
-	e.GET("/shogunsea", tv_action_shogun_seasons)
-	e.GET("/shogunepi", tv_action_shogun_episodes)
+	e.GET("/Shogunsea", tv_action_shogun_seasons)
+	e.GET("/Shogunepi", tv_action_shogun_episodes)
 	e.GET("/continentalsea", tv_action_continental_seasons)
 	e.GET("/continentalepi", tv_action_continental_episodes)
 	e.GET("/tvcomedy", tv_comedy)
@@ -448,43 +449,40 @@ func mov_xmen(c echo.Context) error {
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
-
 func TVSeasonInfo(cat string) []map[string]string {
 	dbPath := os.Getenv("MTV_DB_PATH")
-    db, err := sql.Open("sqlite3", dbPath)
-    if err != nil {
-        log.Printf("failed to open database: %v", err)
-    }
-    defer db.Close()
+	db, err := sql.Open("sqlite3", dbPath)
+	if err != nil {
+		log.Printf("failed to open database: %v", err)
+	}
+	defer db.Close()
 
-    rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Catagory = ? ORDER BY Season ASC", cat)
-    if err != nil {
-        log.Printf("failed to execute query: %v", err)
-    }
-    defer rows.Close()
+	rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Catagory = ? ORDER BY Season ASC", cat)
+	if err != nil {
+		log.Printf("failed to execute query: %v", err)
+	}
+	defer rows.Close()
 
-    var result []map[string]string
-    for rows.Next() {
-        var season string
-        if err := rows.Scan(&season); err != nil {
-            log.Printf("failed to scan row: %v", err)
-        }
+	var result []map[string]string
+	for rows.Next() {
+		var season string
+		if err := rows.Scan(&season); err != nil {
+			log.Printf("failed to scan row: %v", err)
+		}
 		info := map[string]string{
 			"Catagory": cat,
-			"Season": season,
-
+			"Season":   season,
 		}
-        result = append(result, info)
-    }
+		result = append(result, info)
+	}
 
 	log.Printf("data: %v", result)
 
-    if err := rows.Err(); err != nil {
-        log.Printf("rows iteration error: %v", err)
-    }
+	if err := rows.Err(); err != nil {
+		log.Printf("rows iteration error: %v", err)
+	}
 	return result
 }
-
 
 func TVEpisodeInfo(cat string, sea string) []map[string]string {
 	dbPath := os.Getenv("MTV_DB_PATH")
@@ -507,14 +505,14 @@ func TVEpisodeInfo(cat string, sea string) []map[string]string {
 			log.Printf("failed to scan row: %v", err)
 		}
 		epiInfo := map[string]string{
-			"TvId"   : tv.TvId,
-			"Size"   : tv.Size,
-			"Catagory" : tv.Catagory,
-			"Name"   : tv.Name,
-			"Season" : tv.Season,
-			"Episode": tv.Episode,
-			"Path"   : tv.Path,
-			"Idx"    : tv.Idx,
+			"TvId":     tv.TvId,
+			"Size":     tv.Size,
+			"Catagory": tv.Catagory,
+			"Name":     tv.Name,
+			"Season":   tv.Season,
+			"Episode":  tv.Episode,
+			"Path":     tv.Path,
+			"Idx":      tv.Idx,
 		}
 		sea1EpiInfo = append(sea1EpiInfo, epiInfo)
 
@@ -527,13 +525,12 @@ func TVEpisodeInfo(cat string, sea string) []map[string]string {
 	return sea1EpiInfo
 }
 
-
 func tv_action(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_action", "WORKED")
 }
 func tv_action_shogun_seasons(c echo.Context) error {
 	result := TVSeasonInfo("Shogun")
-    return c.Render(http.StatusOK, "tv_season" , result)
+	return c.Render(http.StatusOK, "tv_season", result)
 }
 func tv_action_shogun_episodes(c echo.Context) error {
 	var data [][]map[string]string
@@ -553,7 +550,6 @@ func tv_action_continental_episodes(c echo.Context) error {
 	return c.Render(http.StatusOK, "mtv_season", data)
 }
 
-
 func tv_comedy(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_comedy", "WORKED")
 }
@@ -563,7 +559,6 @@ func tv_comedy_fuubar_Seasons(c echo.Context) error {
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
-
 
 func tv_fantasy(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_fantasy", "WORKED")
@@ -588,7 +583,6 @@ func tv_fantasy_houseofthedragon_Seasons(c echo.Context) error {
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
-
 
 func tv_startrek(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_startrek", "WORKED")
@@ -700,7 +694,6 @@ func tv_startrek_sttv_Seasons(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 
-
 func tv_starwars(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_starwars", "WORKED")
 }
@@ -762,7 +755,6 @@ func tv_starwars_visions_Seasons(c echo.Context) error {
 	data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
-
 
 func tv_scifi(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_scifi", "WORKED")
@@ -886,7 +878,6 @@ func tv_science_prehistoricplanet_Seasons(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 
-
 func tv_mcu(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_mcu", "WORKED")
 }
@@ -957,7 +948,6 @@ func tv_mcu_secretinvasion_Seasons(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
 
-
 func tv_western(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_western", "WORKED")
 }
@@ -967,4 +957,3 @@ func tv_western_1923_Seasons(c echo.Context) error {
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_Seasons", data)
 }
-
