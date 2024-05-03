@@ -126,7 +126,8 @@ func main() {
 	e.GET("/TheContinentalsea", tv_action_continental_seasons)
 	e.GET("/TheContinentalepi", tv_action_continental_episodes)
 	e.GET("/tvcomedy", tv_comedy)
-	e.GET("/fuubar", tv_comedy_fuubar_Seasons)
+	e.GET("/fuubarsea", tv_comedy_fuubar_seasons)
+	e.GET("/fuubarepi", tv_comedy_fuubar_episodes)
 	e.GET("/tvfantasy", tv_fantasy)
 	e.GET("/wheeloftime", tv_fantasy_wheeloftime_Seasons)
 	e.GET("/ringsOfPower", tv_fantasy_TheLordOfTheRingsTheRingsOfPower_Seasons)
@@ -553,11 +554,15 @@ func tv_action_continental_episodes(c echo.Context) error {
 func tv_comedy(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_comedy", "WORKED")
 }
-func tv_comedy_fuubar_Seasons(c echo.Context) error {
+func tv_comedy_fuubar_seasons(c echo.Context) error {
+	result := TVSeasonInfo("FuuBar")
+	return c.Render(http.StatusOK, "tv_season", result)
+}
+func tv_comedy_fuubar_episodes(c echo.Context) error {
 	var data [][]map[string]string
 	sea1 := TVEpisodeInfo("FuuBar", "01")
 	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+	return c.Render(http.StatusOK, "tv_episode", data)
 }
 
 func tv_fantasy(c echo.Context) error {
