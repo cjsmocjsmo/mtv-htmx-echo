@@ -138,7 +138,7 @@ func main() {
 	e.GET("/TheLordOfTheRingsTheRingsOfPowersea", tv_fantasy_TheLordOfTheRingsTheRingsOfPower_seasons)
 	e.GET("/TheLordOfTheRingsTheRingsOfPowerepi", tv_fantasy_TheLordOfTheRingsTheRingsOfPower_episodes)
 	e.GET("/HouseOfTheDragonsea", tv_fantasy_houseofthedragon_seasons)
-	e.GET("/HouseOfTheDragonepi", tv_fantasy_houseofthedragon_episodes)
+	// e.GET("/HouseOfTheDragonepi", tv_fantasy_houseofthedragon_episodes)
 
 	e.GET("/tvstartrek", tv_startrek)
 	e.GET("/strangenewworlds", tv_startrek_strangenewworlds_Seasons)
@@ -304,7 +304,7 @@ func MovInfo(cat string) []map[string]string {
 			"Catagory":      movie.Catagory,
 			"HttpThumbPath": movie.HttpThumbPath,
 		}
-		log.Printf("movie: %v", movinfo)
+		// log.Printf("movie: %v", movinfo)
 		movies = append(movies, movinfo)
 	}
 
@@ -616,7 +616,7 @@ func TVEpisodeInfo(cat string, sea string) []map[string]string {
 		sea1EpiInfo = append(sea1EpiInfo, epiInfo)
 
 	}
-	log.Printf("data: %v", sea1EpiInfo)
+	// log.Printf("data: %v", sea1EpiInfo)
 
 	if err := rows.Err(); err != nil {
 		log.Printf("rows iteration error: %v", err)
@@ -701,16 +701,16 @@ func tv_fantasy_TheLordOfTheRingsTheRingsOfPower_episodes(c echo.Context) error 
 	return c.Render(http.StatusOK, "tv_episode", data)
 }
 func tv_fantasy_houseofthedragon_seasons(c echo.Context) error {
-	result := TVSeasonInfo("HouseOfTheDragon")
-	return c.Render(http.StatusOK, "tv_season", result)
+	result := TVSeasonInfo2("HouseOfTheDragon", "01")
+	return c.Render(http.StatusOK, "tv_test", result)
 }
-func tv_fantasy_houseofthedragon_episodes(c echo.Context) error {
-	season := c.Param("season")
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("HouseOfTheDragon", season)
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_episode", data)
-}
+// func tv_fantasy_houseofthedragon_episodes(c echo.Context) error {
+// 	season := c.Param("season")
+// 	var data [][]map[string]string
+// 	sea1 := TVEpisodeInfo("HouseOfTheDragon", season)
+// 	data = append(data, sea1)
+// 	return c.Render(http.StatusOK, "tv_episode", data)
+// }
 
 func tv_startrek(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_startrek", "WORKED")
