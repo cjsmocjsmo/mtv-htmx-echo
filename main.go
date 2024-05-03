@@ -42,10 +42,11 @@ type TvEpiStruct struct {
 	Idx      string
 }
 
-// type TVSeasonStruct struct {
-// 	Season string
-// 	Episodes []map[string]string
-// }
+type TVSeasonStruct struct {
+	Catagory string
+	Season string
+	Episodes []TvEpiStruct
+}
 
 func checkDBExists() {
 	mtvDBPath := os.Getenv("MTV_DB_PATH")
@@ -1078,7 +1079,12 @@ func tv_western_1923_seasons(c echo.Context) error {
 		log.Printf("rows iteration error: %v", err)
 	}
 
+	seaInfo := TVSeasonStruct{
+		Catagory: "1923",
+		Season: "01",
+		Episodes: sea1EpiInfo,
+	}
 
 
-	return c.Render(http.StatusOK, "tv_test", sea1EpiInfo)
+	return c.Render(http.StatusOK, "tv_test", seaInfo)
 }

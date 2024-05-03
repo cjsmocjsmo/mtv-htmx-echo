@@ -1,9 +1,10 @@
 {{ define "tv_test" }}
+    {{ .Catagory}}
+    {{ .Season }}
 
     {{ range .}}
     <div>
-        <p>{{ .Name }}</p>
-        <p>{{ .Size }}</p>
+        <p>{{ .Episode }}</p>
     </div>
     {{ end }}
 {{ end }}
