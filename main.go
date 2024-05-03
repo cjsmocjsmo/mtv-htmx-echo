@@ -124,9 +124,9 @@ func main() {
 
 	e.GET("/tvaction", tv_action)
 	e.GET("/Shogunsea", tv_action_shogun_seasons)
-	e.GET("/Shogunepi", tv_action_shogun_episodes)
+	// e.GET("/Shogunepi", tv_action_shogun_episodes)
 	e.GET("/TheContinentalsea", tv_action_continental_seasons)
-	e.GET("/TheContinentalepi", tv_action_continental_episodes)
+	// e.GET("/TheContinentalepi", tv_action_continental_episodes)
 
 	e.GET("/tvcomedy", tv_comedy)
 	e.GET("/FuuBarsea", tv_comedy_fuubar_seasons)
@@ -633,26 +633,26 @@ func tv_action_shogun_seasons(c echo.Context) error {
 	result := TVSeasonInfo2("Shogun", "01")
 	return c.Render(http.StatusOK, "tv_test", result)
 }
-func tv_action_shogun_episodes(c echo.Context) error {
-	season := c.Param("season")
-	log.Printf("season: %s", season)
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("Shogun", season)
-	data = append(data, sea1)
-	log.Printf("data: %v", data)
-	return c.Render(http.StatusOK, "tv_episode", data)
-}
+// func tv_action_shogun_episodes(c echo.Context) error {
+// 	season := c.Param("season")
+// 	log.Printf("season: %s", season)
+// 	var data [][]map[string]string
+// 	sea1 := TVEpisodeInfo("Shogun", season)
+// 	data = append(data, sea1)
+// 	log.Printf("data: %v", data)
+// 	return c.Render(http.StatusOK, "tv_episode", data)
+// }
 func tv_action_continental_seasons(c echo.Context) error {
-	result := TVSeasonInfo("TheContinental")
-	return c.Render(http.StatusOK, "tv_season", result)
+	result := TVSeasonInfo2("TheContinental", "01")
+	return c.Render(http.StatusOK, "tv_test", result)
 }
-func tv_action_continental_episodes(c echo.Context) error {
-	season := c.Param("season")
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("TheContinental", season)
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_episode", data)
-}
+// func tv_action_continental_episodes(c echo.Context) error {
+// 	season := c.Param("season")
+// 	var data [][]map[string]string
+// 	sea1 := TVEpisodeInfo("TheContinental", season)
+// 	data = append(data, sea1)
+// 	return c.Render(http.StatusOK, "tv_episode", data)
+// }
 
 //////////////////////////////// COMEDY TV SHOWS //////////////////////////////////////
 
