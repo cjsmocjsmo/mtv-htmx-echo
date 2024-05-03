@@ -244,7 +244,7 @@ func admin_stats() map[string]string {
 	}
 
 	var tvTotalSize int64
-	err = db.QueryRow("SELECT SUM(Size) FROM movies").Scan(&tvTotalSize)
+	err = db.QueryRow("SELECT SUM(Size) FROM tvshows").Scan(&tvTotalSize)
 	if err != nil {
 		log.Printf("failed to execute query: %v", err)
 	}
