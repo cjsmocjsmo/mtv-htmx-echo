@@ -457,7 +457,7 @@ func TVSeasonInfo(cat string) []map[string]string {
     }
     defer db.Close()
 
-    rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Catagory = ? ORDER BY Season ASC", "Shogun")
+    rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Catagory = ? ORDER BY Season ASC", cat)
     if err != nil {
         log.Printf("failed to execute query: %v", err)
     }
@@ -470,7 +470,7 @@ func TVSeasonInfo(cat string) []map[string]string {
             log.Printf("failed to scan row: %v", err)
         }
 		info := map[string]string{
-			"Catagory": "Shogun",
+			"Catagory": cat,
 			"Season": season,
 
 		}
