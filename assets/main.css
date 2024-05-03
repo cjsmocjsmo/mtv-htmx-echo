@@ -165,7 +165,7 @@ img {
     margin-top: 1em;
 }
 
-.seaDiv .epiDiv {
+.seaDiv, .epiDiv {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -173,7 +173,7 @@ img {
     margin-top: 2em;
 }
 
-.seaBtn .epiBtn {
+.seaBtn, .epiBtn {
     margin: 1em;
     padding: 12px 24px;
     border-style: solid;
