@@ -187,7 +187,7 @@ func main() {
 	e.GET("/hawkeye", tv_mcu_hawkeye_Seasons)
 	e.GET("/secretInvasion", tv_mcu_secretinvasion_Seasons)
 	e.GET("/tvwestern", tv_western)
-	e.GET("/1923", tv_western_1923_seasons)
+	e.GET("/hford1923", tv_western_1923_seasons)
 	e.GET("/admin", mtv_admin)
 	e.GET("/playmovie/:MovId", playmovie)
 	e.Static("/assets", "assets")
