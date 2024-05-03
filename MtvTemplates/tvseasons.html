@@ -3,7 +3,7 @@
     <h2>Seasons</h2>
     <div class="seaDiv">
     {{ range . }}
-        <button class="seaBtn" hx-trigger="click" hx-get="/{{ .Catagory }}epi:?season={{ .Season }}" hx-target="#epiMainDiv" hx-swap="innerHTML">
+        <button class="seaBtn" hx-trigger="click" hx-get="/{{ .Catagory }}epi?{{ .Season }}" hx-target="#epiMainDiv" hx-swap="innerHTML">
             {{ .Season}}
         </button>
     {{ end }}
