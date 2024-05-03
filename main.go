@@ -594,8 +594,9 @@ func tv_action_shogun_seasons(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_season", result)
 }
 func tv_action_shogun_episodes(c echo.Context) error {
+	season := c.Param("season")
 	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("Shogun", "01")
+	sea1 := TVEpisodeInfo("Shogun", season)
 	data = append(data, sea1)
 	log.Printf("data: %v", data)
 	return c.Render(http.StatusOK, "tv_episode", data)
@@ -605,8 +606,9 @@ func tv_action_continental_seasons(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_season", result)
 }
 func tv_action_continental_episodes(c echo.Context) error {
+	season := c.Param("season")
 	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("TheContinental", "01")
+	sea1 := TVEpisodeInfo("TheContinental", season)
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_episode", data)
 }
@@ -621,8 +623,9 @@ func tv_comedy_fuubar_seasons(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_season", result)
 }
 func tv_comedy_fuubar_episodes(c echo.Context) error {
+	season := c.Param("season")
 	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("FuuBar", "01")
+	sea1 := TVEpisodeInfo("FuuBar", season)
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_episode", data)
 }
@@ -637,20 +640,22 @@ func tv_fantasy_wheeloftime_seasons(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_season", result)
 }
 func tv_fantasy_wheeloftime_episodes(c echo.Context) error {
+	season := c.Param("season")
 	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("WheelOfTime", "01")
+	sea1 := TVEpisodeInfo("WheelOfTime", season)
 	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("WheelOfTime", "02")
-	data = append(data, sea2)
+	// sea2 := TVEpisodeInfo("WheelOfTime", season)
+	// data = append(data, sea2)
 	return c.Render(http.StatusOK, "tv_episode", data)
 }
 func tv_fantasy_TheLordOfTheRingsTheRingsOfPower_seasons(c echo.Context) error {
-	result := TVSeasonInfo("TheLordOfTheRingsTheRingsOfPower")
+	result := TVSeasonInfo("RingsOfPower")
 	return c.Render(http.StatusOK, "tv_season", result)
 }
 func tv_fantasy_TheLordOfTheRingsTheRingsOfPower_episodes(c echo.Context) error {
+	season := c.Param("season")
 	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("RingsOfPower", "01")
+	sea1 := TVEpisodeInfo("RingsOfPower", season)
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_episode", data)
 }
@@ -659,8 +664,9 @@ func tv_fantasy_houseofthedragon_seasons(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_season", result)
 }
 func tv_fantasy_houseofthedragon_episodes(c echo.Context) error {
+	season := c.Param("season")
 	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("HouseOfTheDragon", "01")
+	sea1 := TVEpisodeInfo("HouseOfTheDragon", season)
 	data = append(data, sea1)
 	return c.Render(http.StatusOK, "tv_episode", data)
 }
