@@ -8,7 +8,7 @@ import (
 	"log"
 	"net/http"
 	"os"
-
+	"strconv"
 	"github.com/joho/godotenv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -217,8 +217,40 @@ func mtv_tvshows(c echo.Context) error {
 	return c.Render(http.StatusOK, "mtv_tvshows", "WORKED")
 }
 
+func admin_stats() map[string]string {
+	dbPath := os.Getenv("MTV_DB_PATH")
+    db, err := sql.Open("sqlite3", dbPath)
+    if err != nil {
+        log.Printf("failed to open database: %v", err)
+    }
+    defer db.Close()
+
+    var mov_count int
+    err = db.QueryRow("SELECT COUNT(*) FROM movies").Scan(&mov_count)
+    if err != nil {
+        log.Printf("failed to execute query: %v", err)
+    }
+
+	var tv_count int
+	err = db.QueryRow("SELECT COUNT(*) FROM tvshows").Scan(&tv_count)
+	if err != nil {
+		log.Printf("failed to execute query: %v", err)
+	}
+
+	movCountStr := strconv.Itoa(mov_count)
+	tvCountStr := strconv.Itoa(tv_count)
+
+    data := map[string]string{
+		"Mov_count": movCountStr,
+		"Tv_count": tvCountStr,
+	}
+
+	return data
+}
+
 func mtv_admin(c echo.Context) error {
-	return c.Render(http.StatusOK, "mtv_admin", "WORKED")
+	data := admin_stats()
+	return c.Render(http.StatusOK, "mtv_admin", data)
 }
 
 func MovInfo(cat string) []map[string]string {
