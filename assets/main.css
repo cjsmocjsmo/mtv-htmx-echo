@@ -168,13 +168,14 @@ img {
 .seaDiv, .epiDiv {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     margin-top: 2em;
 }
 
 .seaBtn, .epiBtn {
-    margin: 1em;
+    margin: .5rem;
     padding: 12px 24px;
     border-style: solid;
     border-color: purple;
