@@ -744,19 +744,19 @@ func tv_startrek_voyager_seasons(c echo.Context) error {
 }
 func tv_startrek_nextgeneration_seasons(c echo.Context) error {
 	season_list := []TVSeasonStruct{}
-	sea1 := TVSeasonInfo2("NextGeneration", "01")
+	sea1 := TVSeasonInfo2("TNG", "01")
 	season_list = append(season_list, sea1)
-	sea2 := TVSeasonInfo2("NextGeneration", "02")
+	sea2 := TVSeasonInfo2("TNG", "02")
 	season_list = append(season_list, sea2)
-	sea3 := TVSeasonInfo2("NextGeneration", "03")
+	sea3 := TVSeasonInfo2("TNG", "03")
 	season_list = append(season_list, sea3)
-	sea4 := TVSeasonInfo2("NextGeneration", "04")
+	sea4 := TVSeasonInfo2("TNG", "04")
 	season_list = append(season_list, sea4)
-	sea5 := TVSeasonInfo2("NextGeneration", "05")
+	sea5 := TVSeasonInfo2("TNG", "05")
 	season_list = append(season_list, sea5)
-	sea6 := TVSeasonInfo2("NextGeneration", "06")
+	sea6 := TVSeasonInfo2("TNG", "06")
 	season_list = append(season_list, sea6)
-	sea7 := TVSeasonInfo2("NextGeneration", "07")
+	sea7 := TVSeasonInfo2("TNG", "07")
 	season_list = append(season_list, sea7)
 	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
