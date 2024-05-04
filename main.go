@@ -124,21 +124,16 @@ func main() {
 
 	e.GET("/tvaction", tv_action)
 	e.GET("/Shogunsea", tv_action_shogun_seasons)
-	// e.GET("/Shogunepi", tv_action_shogun_episodes)
 	e.GET("/TheContinentalsea", tv_action_continental_seasons)
-	// e.GET("/TheContinentalepi", tv_action_continental_episodes)
 
 	e.GET("/tvcomedy", tv_comedy)
 	e.GET("/FuuBarsea", tv_comedy_fuubar_seasons)
-	// e.GET("/FuuBarepi", tv_comedy_fuubar_episodes)
 
 	e.GET("/tvfantasy", tv_fantasy)
 	e.GET("/WheelOfTimesea", tv_fantasy_wheeloftime_seasons)
-	e.GET("/WheelOfTimeepi", tv_fantasy_wheeloftime_episodes)
+	// e.GET("/WheelOfTimeepi", tv_fantasy_wheeloftime_episodes)
 	e.GET("/TheLordOfTheRingsTheRingsOfPowersea", tv_fantasy_TheLordOfTheRingsTheRingsOfPower_seasons)
-	// e.GET("/TheLordOfTheRingsTheRingsOfPowerepi", tv_fantasy_TheLordOfTheRingsTheRingsOfPower_episodes)
 	e.GET("/HouseOfTheDragonsea", tv_fantasy_houseofthedragon_seasons)
-	// e.GET("/HouseOfTheDragonepi", tv_fantasy_houseofthedragon_episodes)
 
 	e.GET("/tvstartrek", tv_startrek)
 	e.GET("/strangenewworlds", tv_startrek_strangenewworlds_Seasons)
@@ -654,40 +649,31 @@ func tv_fantasy(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_fantasy", "WORKED")
 }
 func tv_fantasy_wheeloftime_seasons(c echo.Context) error {
-	result := TVSeasonInfo("WheelOfTime")
-	return c.Render(http.StatusOK, "tv_season", result)
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("WheelOfTime", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("WheelOfTime", "02")
+	season_list = append(season_list, sea2)
+	
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
-func tv_fantasy_wheeloftime_episodes(c echo.Context) error {
-	season := c.Param("season")
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("WheelOfTime", season)
-	data = append(data, sea1)
-	// sea2 := TVEpisodeInfo("WheelOfTime", season)
-	// data = append(data, sea2)
-	return c.Render(http.StatusOK, "tv_episode", data)
-}
+// func tv_fantasy_wheeloftime_episodes(c echo.Context) error {
+// 	season := c.Param("season")
+// 	var data [][]map[string]string
+// 	sea1 := TVEpisodeInfo("WheelOfTime", season)
+// 	data = append(data, sea1)
+// 	// sea2 := TVEpisodeInfo("WheelOfTime", season)
+// 	// data = append(data, sea2)
+// 	return c.Render(http.StatusOK, "tv_episode", data)
+// }
 func tv_fantasy_TheLordOfTheRingsTheRingsOfPower_seasons(c echo.Context) error {
 	result := TVSeasonInfo2("RingsOfPower", "01")
 	return c.Render(http.StatusOK, "tv_test", result)
 }
-// func tv_fantasy_TheLordOfTheRingsTheRingsOfPower_episodes(c echo.Context) error {
-// 	season := c.Param("season")
-// 	var data [][]map[string]string
-// 	sea1 := TVEpisodeInfo("RingsOfPower", season)
-// 	data = append(data, sea1)
-// 	return c.Render(http.StatusOK, "tv_episode", data)
-// }
 func tv_fantasy_houseofthedragon_seasons(c echo.Context) error {
 	result := TVSeasonInfo2("HouseOfTheDragon", "01")
 	return c.Render(http.StatusOK, "tv_test", result)
 }
-// func tv_fantasy_houseofthedragon_episodes(c echo.Context) error {
-// 	season := c.Param("season")
-// 	var data [][]map[string]string
-// 	sea1 := TVEpisodeInfo("HouseOfTheDragon", season)
-// 	data = append(data, sea1)
-// 	return c.Render(http.StatusOK, "tv_episode", data)
-// }
 
 func tv_startrek(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_startrek", "WORKED")
