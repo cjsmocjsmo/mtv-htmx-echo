@@ -148,40 +148,40 @@ func main() {
 	e.GET("/tvstarwars", tv_starwars)
 	e.GET("/ahsoka", tv_starwars_ahsoka_seasons)
 	e.GET("/andor", tv_starwars_andor_seasons)
-	e.GET("/badbatch", tv_starwars_badbatch_Seasons)
-	e.GET("/bobafett", tv_starwars_bobafett_Seasons)
-	e.GET("/mandalorian", tv_starwars_mandalorian_Seasons)
-	e.GET("/obiwan", tv_starwars_obiwan_Seasons)
-	e.GET("/talesofthejedi", tv_starwars_talesofthejedi_Seasons)
-	e.GET("/visions", tv_starwars_visions_Seasons)
+	e.GET("/badbatch", tv_starwars_badbatch_seasons)
+	e.GET("/bobafett", tv_starwars_bobafett_seasons)
+	e.GET("/mandalorian", tv_starwars_mandalorian_seasons)
+	e.GET("/obiwan", tv_starwars_obiwan_seasons)
+	e.GET("/talesofthejedi", tv_starwars_talesofthejedi_seasons)
+	e.GET("/visions", tv_starwars_visions_seasons)
 	e.GET("/tvscifi", tv_scifi)
-	e.GET("/threebodyproblem", tv_scifi_threebodyproblem_Seasons)
-	e.GET("/fallout", tv_scifi_fallout_Seasons)
-	e.GET("/alteredcarbon", tv_scifi_alteredcarbon_Seasons)
-	e.GET("/cowboybebop", tv_scifi_cowboybebop_Seasons)
-	e.GET("/forallmankind", tv_scifi_forallmankind_Seasons)
-	e.GET("/foundation", tv_scifi_foundation_Seasons)
-	e.GET("/halo", tv_scifi_halo_Seasons)
-	e.GET("/thelastofus", tv_scifi_thelastofus_Seasons)
-	e.GET("/lostinspace", tv_scifi_lostinspace_Seasons)
-	e.GET("/monarchlegacyofmonsters", tv_scifi_monarchlegacyofmonsters_Seasons)
-	e.GET("/nightsky", tv_scifi_nightsky_Seasons)
-	e.GET("/orville", tv_scifi_orville_Seasons)
-	e.GET("/raisedbywolves", tv_scifi_raisedbywolves_Seasons)
-	e.GET("/silo", tv_scifi_silo_Seasons)
+	e.GET("/threebodyproblem", tv_scifi_threebodyproblem_seasons)
+	e.GET("/fallout", tv_scifi_fallout_seasons)
+	e.GET("/alteredcarbon", tv_scifi_alteredcarbon_seasons)
+	e.GET("/cowboybebop", tv_scifi_cowboybebop_seasons)
+	e.GET("/forallmankind", tv_scifi_forallmankind_seasons)
+	e.GET("/foundation", tv_scifi_foundation_seasons)
+	e.GET("/halo", tv_scifi_halo_seasons)
+	e.GET("/thelastofus", tv_scifi_thelastofus_seasons)
+	e.GET("/lostinspace", tv_scifi_lostinspace_seasons)
+	e.GET("/monarchlegacyofmonsters", tv_scifi_monarchlegacyofmonsters_seasons)
+	e.GET("/nightsky", tv_scifi_nightsky_seasons)
+	e.GET("/orville", tv_scifi_orville_seasons)
+	e.GET("/raisedbywolves", tv_scifi_raisedbywolves_seasons)
+	e.GET("/silo", tv_scifi_silo_seasons)
 	e.GET("/tvscience", tv_science)
-	e.GET("/prehistoricplanet", tv_science_prehistoricplanet_Seasons)
+	e.GET("/prehistoricplanet", tv_science_prehistoricplanet_seasons)
 	e.GET("/tvmcu", tv_mcu)
 	e.GET("/falconwintersoldier", tv_mcu_falconwintersoldier_Seasons)
-	e.GET("/iamgroot", tv_mcu_iamgroot_Seasons)
+	e.GET("/iamgroot", tv_mcu_iamgroot_seasons)
 	e.GET("/loki", tv_mcu_loki_Seasons)
-	e.GET("/moonknight", tv_mcu_moonknight_Seasons)
-	e.GET("/msMarvel", tv_mcu_msMarvel_Seasons)
-	e.GET("/shehulk", tv_mcu_shehulk_Seasons)
-	e.GET("/whatif", tv_mcu_whatif_Seasons)
-	e.GET("/wandaVision", tv_mcu_wandavision_Seasons)
-	e.GET("/hawkeye", tv_mcu_hawkeye_Seasons)
-	e.GET("/secretInvasion", tv_mcu_secretinvasion_Seasons)
+	e.GET("/moonknight", tv_mcu_moonknight_seasons)
+	e.GET("/msMarvel", tv_mcu_msMarvel_seasons)
+	e.GET("/shehulk", tv_mcu_shehulk_seasons)
+	e.GET("/whatif", tv_mcu_whatif_seasons)
+	e.GET("/wandaVision", tv_mcu_wandavision_seasons)
+	e.GET("/hawkeye", tv_mcu_hawkeye_seasons)
+	e.GET("/secretInvasion", tv_mcu_secretinvasion_seasons)
 	e.GET("/tvwestern", tv_western)
 	e.GET("/hford1923", tv_western_1923_seasons)
 	e.GET("/admin", mtv_admin)
@@ -578,46 +578,46 @@ func TVSeasonInfo(cat string) []map[string]string {
 	return result
 }
 
-func TVEpisodeInfo(cat string, sea string) []map[string]string {
-	dbPath := os.Getenv("MTV_DB_PATH")
-	db, err := sql.Open("sqlite3", dbPath)
-	if err != nil {
-		log.Printf("failed to open database: %v", err)
-	}
-	defer db.Close()
+// func TVSeasonInfo2(cat string, sea string) []map[string]string {
+// 	dbPath := os.Getenv("MTV_DB_PATH")
+// 	db, err := sql.Open("sqlite3", dbPath)
+// 	if err != nil {
+// 		log.Printf("failed to open database: %v", err)
+// 	}
+// 	defer db.Close()
 
-	rows, err := db.Query("SELECT TvId, Size, Catagory, Name, Season, Episode, Path, Idx FROM tvshows WHERE Catagory = ? AND Season = ? ORDER BY Episode ASC", cat, sea)
-	if err != nil {
-		log.Printf("failed to execute query: %v", err)
-	}
-	defer rows.Close()
+// 	rows, err := db.Query("SELECT TvId, Size, Catagory, Name, Season, Episode, Path, Idx FROM tvshows WHERE Catagory = ? AND Season = ? ORDER BY Episode ASC", cat, sea)
+// 	if err != nil {
+// 		log.Printf("failed to execute query: %v", err)
+// 	}
+// 	defer rows.Close()
 
-	var sea1EpiInfo []map[string]string
-	for rows.Next() {
-		var tv TvEpiStruct
-		if err := rows.Scan(&tv.TvId, &tv.Size, &tv.Catagory, &tv.Name, &tv.Season, &tv.Episode, &tv.Path, &tv.Idx); err != nil {
-			log.Printf("failed to scan row: %v", err)
-		}
-		epiInfo := map[string]string{
-			"TvId":     tv.TvId,
-			"Size":     tv.Size,
-			"Catagory": tv.Catagory,
-			"Name":     tv.Name,
-			"Season":   tv.Season,
-			"Episode":  tv.Episode,
-			"Path":     tv.Path,
-			"Idx":      tv.Idx,
-		}
-		sea1EpiInfo = append(sea1EpiInfo, epiInfo)
+// 	var sea1EpiInfo []map[string]string
+// 	for rows.Next() {
+// 		var tv TvEpiStruct
+// 		if err := rows.Scan(&tv.TvId, &tv.Size, &tv.Catagory, &tv.Name, &tv.Season, &tv.Episode, &tv.Path, &tv.Idx); err != nil {
+// 			log.Printf("failed to scan row: %v", err)
+// 		}
+// 		epiInfo := map[string]string{
+// 			"TvId":     tv.TvId,
+// 			"Size":     tv.Size,
+// 			"Catagory": tv.Catagory,
+// 			"Name":     tv.Name,
+// 			"Season":   tv.Season,
+// 			"Episode":  tv.Episode,
+// 			"Path":     tv.Path,
+// 			"Idx":      tv.Idx,
+// 		}
+// 		sea1EpiInfo = append(sea1EpiInfo, epiInfo)
 
-	}
-	// log.Printf("data: %v", sea1EpiInfo)
+// 	}
+// 	// log.Printf("data: %v", sea1EpiInfo)
 
-	if err := rows.Err(); err != nil {
-		log.Printf("rows iteration error: %v", err)
-	}
-	return sea1EpiInfo
-}
+// 	if err := rows.Err(); err != nil {
+// 		log.Printf("rows iteration error: %v", err)
+// 	}
+// 	return sea1EpiInfo
+// }
 
 //////////////////////////////// ACTION TV SHOWS //////////////////////////////////////
 
@@ -782,293 +782,215 @@ func tv_starwars_andor_seasons(c echo.Context) error {
 	result := TVSeasonInfo2("Andor", "01")
 	return c.Render(http.StatusOK, "tv_test", result)
 }
-func tv_starwars_badbatch_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("BadBatch", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("BadBatch", "02")
-	data = append(data, sea2)
-	sea3 := TVEpisodeInfo("BadBatch", "03")
-	data = append(data, sea3)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_starwars_badbatch_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("BadBatch", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("BadBatch", "02")
+	season_list = append(season_list, sea2)
+	sea3 := TVSeasonInfo2("BadBatch", "03")
+	season_list = append(season_list, sea3)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
-func tv_starwars_bobafett_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("BobaFett", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_starwars_bobafett_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("BobaFett", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_starwars_mandalorian_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("Mandalorian", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("Mandalorian", "02")
-	data = append(data, sea2)
-	sea3 := TVEpisodeInfo("Mandalorian", "03")
-	data = append(data, sea3)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_starwars_mandalorian_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("Mandalorian", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("Mandalorian", "02")
+	season_list = append(season_list, sea2)
+	sea3 := TVSeasonInfo2("Mandalorian", "03")
+	season_list = append(season_list, sea3)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
-func tv_starwars_obiwan_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("ObiWan", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_starwars_obiwan_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("ObiWan", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_starwars_talesofthejedi_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("TalesOfTheJedi", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_starwars_talesofthejedi_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("TalesOfTheJedi", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_starwars_visions_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("Visions", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("Visions", "02")
-	data = append(data, sea2)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_starwars_visions_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("Visions", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("Visions", "02")
+	season_list = append(season_list, sea2)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
 
 func tv_scifi(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_scifi", "WORKED")
 }
-func tv_scifi_threebodyproblem_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("ThreeBodyProblem", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_threebodyproblem_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("ThreeBodyProblem", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_scifi_fallout_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("Fallout", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_fallout_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("Fallout", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_scifi_alteredcarbon_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("AlteredCarbon", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("AlteredCarbon", "02")
-	data = append(data, sea2)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_alteredcarbon_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("AlteredCarbon", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("AlteredCarbon", "02")
+	season_list = append(season_list, sea2)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
-func tv_scifi_cowboybebop_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("CowboyBebop", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_cowboybebop_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("CowboyBebop", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_scifi_forallmankind_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("ForAllMankind", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("ForAllMankind", "02")
-	data = append(data, sea2)
-	sea3 := TVEpisodeInfo("ForAllMankind", "03")
-	data = append(data, sea3)
-	sea4 := TVEpisodeInfo("ForAllMankind", "04")
-	data = append(data, sea4)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_forallmankind_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("ForAllMankind", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("ForAllMankind", "02")
+	season_list = append(season_list, sea2)
+	sea3 := TVSeasonInfo2("ForAllMankind", "03")
+	season_list = append(season_list, sea3)
+	sea4 := TVSeasonInfo2("ForAllMankind", "04")
+	season_list = append(season_list, sea4)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
-func tv_scifi_foundation_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("Foundation", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("Foundation", "02")
-	data = append(data, sea2)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_foundation_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("Foundation", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("Foundation", "02")
+	season_list = append(season_list, sea2)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
-func tv_scifi_halo_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("Halo", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("Halo", "02")
-	data = append(data, sea2)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_halo_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("Halo", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("Halo", "02")
+	season_list = append(season_list, sea2)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
-func tv_scifi_thelastofus_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("TheLastOfUs", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_thelastofus_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("TheLastOfUs", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_scifi_lostinspace_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("LostInSpace", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("LostInSpace", "02")
-	data = append(data, sea2)
-	sea3 := TVEpisodeInfo("LostInSpace", "03")
-	data = append(data, sea3)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_lostinspace_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("LostInSpace", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("LostInSpace", "02")
+	season_list = append(season_list, sea2)
+	sea3 := TVSeasonInfo2("LostInSpace", "03")
+	season_list = append(season_list, sea3)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
-func tv_scifi_monarchlegacyofmonsters_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("MonarchLegacyOfMonsters", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_monarchlegacyofmonsters_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("MonarchLegacyOfMonsters", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_scifi_nightsky_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("NightSky", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_nightsky_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("NightSky", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_scifi_orville_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("Orville", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("Orville", "02")
-	data = append(data, sea2)
-	sea3 := TVEpisodeInfo("Orville", "03")
-	data = append(data, sea3)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_orville_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("Orville", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("Orville", "02")
+	season_list = append(season_list, sea2)
+	sea3 := TVSeasonInfo2("Orville", "03")
+	season_list = append(season_list, sea3)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
-func tv_scifi_raisedbywolves_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("RaisedByWolves", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("RaisedByWolves", "02")
-	data = append(data, sea2)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_raisedbywolves_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("RaisedByWolves", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("RaisedByWolves", "02")
+	season_list = append(season_list, sea2)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
-func tv_scifi_silo_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("Silo", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_scifi_silo_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("Silo", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
 
 func tv_science(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_science", "WORKED")
 }
-func tv_science_prehistoricplanet_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("PrehistoricPlanet", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("PrehistoricPlanet", "02")
-	data = append(data, sea2)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_science_prehistoricplanet_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("PrehistoricPlanet", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("PrehistoricPlanet", "02")
+	season_list = append(season_list, sea2)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
 
 func tv_mcu(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_mcu", "WORKED")
 }
 func tv_mcu_falconwintersoldier_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("FalconWinterSoldier", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+	sea1 := TVSeasonInfo2("FalconWinterSoldier", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_mcu_iamgroot_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("IAmGroot", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("IAmGroot", "02")
-	data = append(data, sea2)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_mcu_iamgroot_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("IAmGroot", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("IAmGroot", "02")
+	season_list = append(season_list, sea2)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
 func tv_mcu_loki_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("Loki", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("Loki", "02")
-	data = append(data, sea2)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("Loki", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("Loki", "02")
+	season_list = append(season_list, sea2)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
-func tv_mcu_moonknight_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("MoonKnight", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_mcu_moonknight_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("MoonKnight", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_mcu_msMarvel_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("MsMarvel", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_mcu_msMarvel_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("MsMarvel", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_mcu_shehulk_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("SheHulk", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_mcu_shehulk_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("SheHulk", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_mcu_wandavision_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("WandaVision", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_mcu_wandavision_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("WandaVision", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_mcu_whatif_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("WhatIf", "01")
-	data = append(data, sea1)
-	sea2 := TVEpisodeInfo("WhatIf", "02")
-	data = append(data, sea2)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_mcu_whatif_seasons(c echo.Context) error {
+	season_list := []TVSeasonStruct{}
+	sea1 := TVSeasonInfo2("WhatIf", "01")
+	season_list = append(season_list, sea1)
+	sea2 := TVSeasonInfo2("WhatIf", "02")
+	season_list = append(season_list, sea2)
+	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
-func tv_mcu_hawkeye_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("Hawkeye", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_mcu_hawkeye_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("Hawkeye", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
-func tv_mcu_secretinvasion_Seasons(c echo.Context) error {
-	var data [][]map[string]string
-	sea1 := TVEpisodeInfo("SecretInvasion", "01")
-	data = append(data, sea1)
-	return c.Render(http.StatusOK, "tv_Seasons", data)
+func tv_mcu_secretinvasion_seasons(c echo.Context) error {
+	sea1 := TVSeasonInfo2("SecretInvasion", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
 
 func tv_western(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_western", "WORKED")
 }
 func tv_western_1923_seasons(c echo.Context) error {
-	dbPath := os.Getenv("MTV_DB_PATH")
-	db, err := sql.Open("sqlite3", dbPath)
-	if err != nil {
-		log.Printf("failed to open database: %v", err)
-	}
-	defer db.Close()
-
-	rows, err := db.Query("SELECT TvId, Size, Catagory, Name, Season, Episode, Path, Idx FROM tvshows WHERE Catagory = ? AND Season = ? ORDER BY Episode ASC", "HFord1923", "01")
-	if err != nil {
-		log.Printf("failed to execute query: %v", err)
-	}
-	defer rows.Close()
-
-	var sea1EpiInfo []TvEpiStruct
-	for rows.Next() {
-		var tv TvEpiStruct
-		if err := rows.Scan(&tv.TvId, &tv.Size, &tv.Catagory, &tv.Name, &tv.Season, &tv.Episode, &tv.Path, &tv.Idx); err != nil {
-			log.Printf("failed to scan row: %v", err)
-		}
-		// epiInfo := TvEpiStruct{
-		// 	TvId:     tv.TvId,
-		// 	Size:     tv.Size,
-		// 	Catagory: tv.Catagory,
-		// 	Name:     tv.Name,
-		// 	Season:   tv.Season,
-		// 	Episode:  tv.Episode,
-		// 	Path:     tv.Path,
-		// 	Idx:      tv.Idx,
-		// }
-		sea1EpiInfo = append(sea1EpiInfo, tv)
-
-	}
-	
-
-	if err := rows.Err(); err != nil {
-		log.Printf("rows iteration error: %v", err)
-	}
-
-	seaInfo := TVSeasonStruct{
-		Cat: "1923",
-		Sea: "01",
-		Epi: sea1EpiInfo,
-	}
-	log.Printf("data: %v", seaInfo)
-
-	return c.Render(http.StatusOK, "tv_test", seaInfo)
+	sea1 := TVSeasonInfo2("HFord1923", "01")
+	return c.Render(http.StatusOK, "tv_test", sea1)
 }
