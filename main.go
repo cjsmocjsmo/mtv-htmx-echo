@@ -696,8 +696,6 @@ func tv_startrek_picard_seasons(c echo.Context) error {
 	season_list = append(season_list, sea1)
 	sea2 := TVSeasonInfo2("Picard", "02")
 	season_list = append(season_list, sea2)
-	sea3 := TVSeasonInfo2("Picard", "03")
-	season_list = append(season_list, sea3)
 	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
 func tv_startrek_lowerdecks_seasons(c echo.Context) error {
@@ -713,10 +711,8 @@ func tv_startrek_lowerdecks_seasons(c echo.Context) error {
 	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
 func tv_startrek_prodigy_Seasons(c echo.Context) error {
-	season_list := []TVSeasonStruct{}
-	sea1 := TVSeasonInfo2("Prodigy", "01")
-	season_list = append(season_list, sea1)
-	return c.Render(http.StatusOK, "tv_test", season_list)
+	result := TVSeasonInfo2("Prodigy", "01")
+	return c.Render(http.StatusOK, "tv_test", result)
 }
 func tv_startrek_enterprise_Seasons(c echo.Context) error {
 	var data [][]map[string]string
