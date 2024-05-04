@@ -176,10 +176,10 @@ func main() {
 	e.GET("/iamgroot", tv_mcu_iamgroot_seasons)
 	e.GET("/loki", tv_mcu_loki_Seasons)
 	e.GET("/moonknight", tv_mcu_moonknight_seasons)
-	e.GET("/msMarvel", tv_mcu_msMarvel_seasons)
+	
 	e.GET("/shehulk", tv_mcu_shehulk_seasons)
 	e.GET("/whatif", tv_mcu_whatif_seasons)
-	e.GET("/wandaVision", tv_mcu_wandavision_seasons)
+	e.GET("/wandavision", tv_mcu_wandavision_seasons)
 	e.GET("/hawkeye", tv_mcu_hawkeye_seasons)
 	e.GET("/secretInvasion", tv_mcu_secretinvasion_seasons)
 	e.GET("/tvwestern", tv_western)
@@ -956,10 +956,6 @@ func tv_mcu_loki_Seasons(c echo.Context) error {
 }
 func tv_mcu_moonknight_seasons(c echo.Context) error {
 	sea1 := TVSeasonInfo2("MoonKnight", "01")
-	return c.Render(http.StatusOK, "tv_test", sea1)
-}
-func tv_mcu_msMarvel_seasons(c echo.Context) error {
-	sea1 := TVSeasonInfo2("MsMarvel", "01")
 	return c.Render(http.StatusOK, "tv_test", sea1)
 }
 func tv_mcu_shehulk_seasons(c echo.Context) error {
