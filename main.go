@@ -121,19 +121,15 @@ func main() {
 	e.GET("/movtherock", mov_therock)
 	e.GET("/movxmen", mov_xmen)
 	e.GET("/tvshows", mtv_tvshows)
-
 	e.GET("/tvaction", tv_action)
 	e.GET("/Shogunsea", tv_action_shogun_seasons)
 	e.GET("/TheContinentalsea", tv_action_continental_seasons)
-
 	e.GET("/tvcomedy", tv_comedy)
 	e.GET("/FuuBarsea", tv_comedy_fuubar_seasons)
-
 	e.GET("/tvfantasy", tv_fantasy)
 	e.GET("/WheelOfTimesea", tv_fantasy_wheeloftime_seasons)
 	e.GET("/TheLordOfTheRingsTheRingsOfPowersea", tv_fantasy_TheLordOfTheRingsTheRingsOfPower_seasons)
 	e.GET("/HouseOfTheDragonsea", tv_fantasy_houseofthedragon_seasons)
-
 	e.GET("/tvstartrek", tv_startrek)
 	e.GET("/strangenewworlds", tv_startrek_strangenewworlds_seasons)
 	e.GET("/discovery", tv_startrek_discovery_seasons)
@@ -144,7 +140,6 @@ func main() {
 	e.GET("/voyager", tv_startrek_voyager_seasons)
 	e.GET("/nextgeneration", tv_startrek_nextgeneration_seasons)
 	e.GET("/sttv", tv_startrek_sttv_seasons)
-
 	e.GET("/tvstarwars", tv_starwars)
 	e.GET("/ahsoka", tv_starwars_ahsoka_seasons)
 	e.GET("/andor", tv_starwars_andor_seasons)
@@ -176,7 +171,6 @@ func main() {
 	e.GET("/iamgroot", tv_mcu_iamgroot_seasons)
 	e.GET("/loki", tv_mcu_loki_Seasons)
 	e.GET("/moonknight", tv_mcu_moonknight_seasons)
-	
 	e.GET("/shehulk", tv_mcu_shehulk_seasons)
 	e.GET("/whatif", tv_mcu_whatif_seasons)
 	e.GET("/wandavision", tv_mcu_wandavision_seasons)
@@ -188,7 +182,6 @@ func main() {
 	e.GET("/playmovie/:MovId", playmovie)
 	e.Static("/assets", "assets")
 	e.Logger.Fatal(e.Start(":8080"))
-
 }
 
 func playmovie(c echo.Context) error {
@@ -299,7 +292,6 @@ func MovInfo(cat string) []map[string]string {
 			"Catagory":      movie.Catagory,
 			"HttpThumbPath": movie.HttpThumbPath,
 		}
-		// log.Printf("movie: %v", movinfo)
 		movies = append(movies, movinfo)
 	}
 
@@ -528,7 +520,6 @@ func TVSeasonInfo2(cat string, sea string) TVSeasonStruct {
 
 	}
 	
-
 	if err := rows.Err(); err != nil {
 		log.Printf("rows iteration error: %v", err)
 	}
@@ -538,7 +529,6 @@ func TVSeasonInfo2(cat string, sea string) TVSeasonStruct {
 		Sea: sea,
 		Epi: sea1EpiInfo,
 	}
-	// log.Printf("data: %v", seaInfo)
 
 	return seaInfo
 }
@@ -570,54 +560,11 @@ func TVSeasonInfo(cat string) []map[string]string {
 		result = append(result, info)
 	}
 
-	log.Printf("data: %v", result)
-
 	if err := rows.Err(); err != nil {
 		log.Printf("rows iteration error: %v", err)
 	}
 	return result
 }
-
-// func TVSeasonInfo2(cat string, sea string) []map[string]string {
-// 	dbPath := os.Getenv("MTV_DB_PATH")
-// 	db, err := sql.Open("sqlite3", dbPath)
-// 	if err != nil {
-// 		log.Printf("failed to open database: %v", err)
-// 	}
-// 	defer db.Close()
-
-// 	rows, err := db.Query("SELECT TvId, Size, Catagory, Name, Season, Episode, Path, Idx FROM tvshows WHERE Catagory = ? AND Season = ? ORDER BY Episode ASC", cat, sea)
-// 	if err != nil {
-// 		log.Printf("failed to execute query: %v", err)
-// 	}
-// 	defer rows.Close()
-
-// 	var sea1EpiInfo []map[string]string
-// 	for rows.Next() {
-// 		var tv TvEpiStruct
-// 		if err := rows.Scan(&tv.TvId, &tv.Size, &tv.Catagory, &tv.Name, &tv.Season, &tv.Episode, &tv.Path, &tv.Idx); err != nil {
-// 			log.Printf("failed to scan row: %v", err)
-// 		}
-// 		epiInfo := map[string]string{
-// 			"TvId":     tv.TvId,
-// 			"Size":     tv.Size,
-// 			"Catagory": tv.Catagory,
-// 			"Name":     tv.Name,
-// 			"Season":   tv.Season,
-// 			"Episode":  tv.Episode,
-// 			"Path":     tv.Path,
-// 			"Idx":      tv.Idx,
-// 		}
-// 		sea1EpiInfo = append(sea1EpiInfo, epiInfo)
-
-// 	}
-// 	// log.Printf("data: %v", sea1EpiInfo)
-
-// 	if err := rows.Err(); err != nil {
-// 		log.Printf("rows iteration error: %v", err)
-// 	}
-// 	return sea1EpiInfo
-// }
 
 //////////////////////////////// ACTION TV SHOWS //////////////////////////////////////
 
