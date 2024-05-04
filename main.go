@@ -397,7 +397,7 @@ func mov_johnwick(c echo.Context) error {
 }
 
 func mov_jurrassicpark(c echo.Context) error {
-	movies := MovInfo("JurrassicPark")
+	movies := MovInfo("JurassicPark")
 	return c.Render(http.StatusOK, "mov_movie", movies)
 }
 
