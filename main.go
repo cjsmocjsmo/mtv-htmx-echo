@@ -543,7 +543,42 @@ func TVSeasonInfo2(cat string, sea string) TVSeasonStruct {
 	return seaInfo
 }
 
-// func TVSeasonInfo(cat string) []map[string]string {
+func TVSeasonInfo(cat string) []map[string]string {
+	dbPath := os.Getenv("MTV_DB_PATH")
+	db, err := sql.Open("sqlite3", dbPath)
+	if err != nil {
+		log.Printf("failed to open database: %v", err)
+	}
+	defer db.Close()
+
+	rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Catagory = ? ORDER BY Season ASC", cat)
+	if err != nil {
+		log.Printf("failed to execute query: %v", err)
+	}
+	defer rows.Close()
+
+	var result []map[string]string
+	for rows.Next() {
+		var season string
+		if err := rows.Scan(&season); err != nil {
+			log.Printf("failed to scan row: %v", err)
+		}
+		info := map[string]string{
+			"Catagory": cat,
+			"Season":   season,
+		}
+		result = append(result, info)
+	}
+
+	log.Printf("data: %v", result)
+
+	if err := rows.Err(); err != nil {
+		log.Printf("rows iteration error: %v", err)
+	}
+	return result
+}
+
+// func TVSeasonInfo2(cat string, sea string) []map[string]string {
 // 	dbPath := os.Getenv("MTV_DB_PATH")
 // 	db, err := sql.Open("sqlite3", dbPath)
 // 	if err != nil {
@@ -551,31 +586,37 @@ func TVSeasonInfo2(cat string, sea string) TVSeasonStruct {
 // 	}
 // 	defer db.Close()
 
-// 	rows, err := db.Query("SELECT DISTINCT Season FROM tvshows WHERE Catagory = ? ORDER BY Season ASC", cat)
+// 	rows, err := db.Query("SELECT TvId, Size, Catagory, Name, Season, Episode, Path, Idx FROM tvshows WHERE Catagory = ? AND Season = ? ORDER BY Episode ASC", cat, sea)
 // 	if err != nil {
 // 		log.Printf("failed to execute query: %v", err)
 // 	}
 // 	defer rows.Close()
 
-// 	var result []map[string]string
+// 	var sea1EpiInfo []map[string]string
 // 	for rows.Next() {
-// 		var season string
-// 		if err := rows.Scan(&season); err != nil {
+// 		var tv TvEpiStruct
+// 		if err := rows.Scan(&tv.TvId, &tv.Size, &tv.Catagory, &tv.Name, &tv.Season, &tv.Episode, &tv.Path, &tv.Idx); err != nil {
 // 			log.Printf("failed to scan row: %v", err)
 // 		}
-// 		info := map[string]string{
-// 			"Catagory": cat,
-// 			"Season":   season,
+// 		epiInfo := map[string]string{
+// 			"TvId":     tv.TvId,
+// 			"Size":     tv.Size,
+// 			"Catagory": tv.Catagory,
+// 			"Name":     tv.Name,
+// 			"Season":   tv.Season,
+// 			"Episode":  tv.Episode,
+// 			"Path":     tv.Path,
+// 			"Idx":      tv.Idx,
 // 		}
-// 		result = append(result, info)
-// 	}
+// 		sea1EpiInfo = append(sea1EpiInfo, epiInfo)
 
-// 	log.Printf("data: %v", result)
+// 	}
+// 	// log.Printf("data: %v", sea1EpiInfo)
 
 // 	if err := rows.Err(); err != nil {
 // 		log.Printf("rows iteration error: %v", err)
 // 	}
-// 	return result
+// 	return sea1EpiInfo
 // }
 
 //////////////////////////////// ACTION TV SHOWS //////////////////////////////////////
