@@ -731,11 +731,11 @@ func tv_starwars_andor_seasons(c echo.Context) error {
 }
 func tv_starwars_badbatch_seasons(c echo.Context) error {
 	season_list := []TVSeasonStruct{}
-	sea1 := TVSeasonInfo2("BadBatch", "01")
+	sea1 := TVSeasonInfo2("TheBadBatch", "01")
 	season_list = append(season_list, sea1)
-	sea2 := TVSeasonInfo2("BadBatch", "02")
+	sea2 := TVSeasonInfo2("TheBadBatch", "02")
 	season_list = append(season_list, sea2)
-	sea3 := TVSeasonInfo2("BadBatch", "03")
+	sea3 := TVSeasonInfo2("TheBadBatch", "03")
 	season_list = append(season_list, sea3)
 	return c.Render(http.StatusOK, "tv_test2", season_list)
 }
